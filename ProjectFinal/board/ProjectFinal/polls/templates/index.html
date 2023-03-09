@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="{% static 'css/survey.css' %}">
+<title>Insert title here</title>
+</head>
+<body>
+{% csrf_token %}
+	<div class="survey_border">
+	<div class="survey_box">
+		<div class="survey_main">
+			<div class="question_header">
+				<div class="survey_title">{% if survey_status %}
+					이미 설문조사를 마치셨습니다.
+				</div>
+			<hr>
+			
+			<div class="question_center">
+				<div class="question_content">
+			</div>
+				<div class="button_content">
+					<a href = "/board">
+					<input class="survey_button" type="button" value="메인페이지로 가기">
+				</a>
+				{% else %}
+					<a href = 1>
+						<input class="survey_button" type="button" value="설문조사 하러가기">
+					</a>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+	
+
+	
+	
+</body>
+</html>

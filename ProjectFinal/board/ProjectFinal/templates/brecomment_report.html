@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+
+	<style>
+      * {
+        font-size: 16px;
+        font-family: Consolas, sans-serif;
+      }
+      textarea {
+        width: 300%;
+        height: 150px;
+      }
+    </style>
+	</head>
+	<body>
+		{% block title %}
+			<h2> 대댓글 신고하기 </h2>
+		{% endblock %}
+		{% block content %}
+			<!-- <form method="post" action="/board/detail/{{dto.id}}/report/" enctype="multipart/form-data" id='reportform' name='reportform' > -->
+				{% csrf_token %}
+			<table>
+			<h2>---------------------------------------------------------------------------</h2>
+				<table>
+					<tr>
+					<th> 작성자 닉네임: {{dtos.writer}} </th>
+					</tr>	
+				</table>
+				<h2>---------------------------------------------------------------------------</h2>
+					<table>
+					<tr>
+					<th> 신고자 닉네임: {{login_session}} </th>
+					</tr>
+					</table>
+				<h2>---------------------------------------------------------------------------</h2>
+					<table>
+					<tr>
+						<th> 신고사유: </th>
+						<td> <input type="radio" name="Gorani" value="abuse"> 욕설/비방 </td> <!-- Gorani == 라디오 체크박스 네임값 -->
+						<td> <input type="radio" name="Gorani" value="overlap"> 도배 </td>
+						<td> <input type="radio" name="Gorani" value="ad"> 홍보/상업성 </td>
+						<td> <input type="radio" name="Gorani" value="lewdness"> 음란성 </td>
+						<td> <input type="radio" name="Gorani" value="illegal_filming"> 불법촬영물 </td>
+						<td> <input type="radio" name="Gorani" value="etc"> 기타 </td>
+					</tr>
+					<table>
+
+					<tr>
+						<td>
+							<textarea clos="50" rows='10' name='detail' ></textarea>
+								
+						</td>
+					</tr>
+					
+					<tr>
+						<th colspan="2">
+							<button class="send_btn" onclick='getGorani()' type='button'>확인</button>
+	
+							<button onclick="window.close();">취소</button>
+						</th>
+					</tr>				
+
+			</table>			
+			<!-- </form>	 -->
+			
+		{% endblock %}
+							
+	</body>
+</html>
+<script  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+
+				      function getGorani(){
+ 				      	var Gorani= document.querySelector('input[name="Gorani"]:checked');
+	 				    var Detail= document.querySelector('input[name="detail"].innerHTML');
+	
+							    $.ajax({
+							    	url:'/board/detail/{{board.id}}/{{dto.id}}/{{dtos.id}}/recomment_report/',
+							        type:'GET',							      
+							        data:{
+							        	'Gorani':Gorani.value,
+										'Detail':$('textarea').val()
+							        },
+							        datatype:'json',
+							        success:function(data){
+							            window.close();
+							        },
+							        error : function(xhr,errmsg,err) {
+							        console.log(xhr.status + ": " + xhr.responseText); 
+							        
+							        }
+							   });
+							  };
+							
+							  
+				
+				     </script>

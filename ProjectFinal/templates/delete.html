@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원탈퇴</title>
+<link rel="stylesheet" href="/static/css/styles2.css">
+<script src="/static/js/jquery-3.6.1.js"></script>
+<script src="/static/js/script_member.js"></script>
+</head>
+<body class="center">
+	<div class="login-wrapper" style="width:480px;">
+		<a href="main" style="float:flex"> 
+			<img src="{% static 'image/blueProjectLogo.png'%}" width="100" style="vertical-align: middle; margin-right:-10px; margin-bottom:30px;">
+		</a>
+		<h2 style="font-weight:bold;">회원탈퇴</h2>
+		<form method="post" action="delete" name="passwdform" id="passwdform">
+         {% csrf_token %} 
+         {% if dto.social == "-" %}         
+            {% if message %}
+               <h3 style="font-weight:bold;">{{message}}</h3>
+            {% else %}
+               <h3 style="font-weight:bold;">비밀번호를 다시
+               <br> 입력해주세요</h3>
+            {% endif %}
+         <br><br>
+         <span style="font-size:20px; font-weight:bold;">비밀번호 :</span><input id="passwdchk" type="password" name="passwd" maxlength="50" placeholder="password" autofocus
+         style="border:2px solid black; background:lightgray; width : 200px; height:50px; border-radius:5px; padding:10px;">
+         <br>
+         <input type="submit" value="탈퇴" style="border:none; width : 130px; height:50px; border-radius:5px; margin-top : 10px;"> 
+            
+         <input type="button" value="탈퇴취소" onclick="location='main'"style="border:none; width : 130px; height:50px; border-radius:5px; margin-top:10px;">
+         {% else %}      
+         <input id="passwdchk" type="hidden" name="passwd" value="1">             
+         <input type="submit" value="탈퇴" style="border:none; width : 130px; height:50px; border-radius:5px; margin-top:10px;"> 
+            
+         <input type="button" value="탈퇴취소" onclick="location='main'"style="border:none; width : 130px; height:50px; border-radius:5px; margin-top:10px;">
+         {% endif %}                  
+      </form>
+	</div>
+</body>
+</html>

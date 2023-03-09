@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="{% static 'css/survey.css' %}">
+</head>
+<body>
+<div class="survey_border">
+	<div class="survey_box">
+		<div class="survey_main">
+			<div class="question_header">
+				<div class="question_title">설문조사에 참여해주셔서 감사합니다
+				</div>
+			<hr>
+			<div class="question_center">
+				<div class="question_content">
+			</div>
+				<div class="button_content">
+					<a href = "/kakao/main">
+						<input class="survey_quit" type="button" value="설문종료 및 포인트 받기">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,375 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/filter1.css'%}" media="all" />
+<link type="text/css" rel="stylesheet"
+	href="{% static 'css/MLProject.css'%}">
+<script src="{% static 'js/project.js'%}"></script>
+<title>GeneralSearch</title>
+
+<style>
+select {
+width:120px;
+height:38px;
+float:left; 
+border: 1px solid #ccc;
+font-family: inherit;  
+background: url('/static/icon/0004.jpg') no-repeat 95% 50%; 
+border-radius: 0px; 
+-webkit-appearance: none; 
+-moz-appearance: none;
+appearance: none;
+}
+
+select::-ms-expand {
+        display: none;
+}
+</style>
+</head>
+<body>
+{% csrf_token %}
+	<div class="grid-container">
+		<div class="grid-item" id="preheader"></div>
+		<!-- ======================= header ========================== -->
+		<div class="grid-item" id="header">
+			<div id="main">
+				<img id="imageLogo" src="{% static 'image/movingearth-unscreen.gif'%}">
+				<a href="main">
+					<img id="textLogo" src="{% static 'image/yellow_logo-removebg.png'%}"> 
+				</a>
+			</div>
+			<div id="searchingBox">
+            <form method="get" action="/kakao/general_search">
+               <input id="searchingBar" type="text" style="padding-left: 30px;" placeholder="&nbsp;통합검색창" name="general_search" value="{{general_search}}"/>
+               <button type="submit">
+                  <img id="searchingIcon" src="{% static 'image/searching.png'%}">
+               </button>
+            </form>
+         </div>
+			<!-- if user login -->
+			{% if session_id != "None" and session_id %}
+         <div class="depend_on_user">
+            <div class="dropdown">
+               <span class="dropdown-button" id="nickname">
+                  {{session_id}}님
+               </span>
+               <div class="dropdown-content">
+               
+                {% if user.social == '-' %}
+	                  <a href="modify">회원정보수정</a> 
+	               {% endif %} 
+						<a href="/kakao/delete">회원탈퇴</a><br>
+						<a href="#">{{user.user_current_point}}</a>
+					</div>
+				</div>
+				<a href="#" id="message"
+            	onclick="window.open('/note/notelist?receive_user={{user_name}}', 'window_name', 'width=500, height=500, top=200, left=200');">
+            	<img id="message-img" src="{% static 'icon/message.png'%}"></a> 
+				<a href="logout" id="logout">로그아웃</a> 
+				<a href="/portfolio?user_name={{session_id}}" id="myportfolio">포트폴리오</a> 
+				<a href="/polls" id="polls">설문조사</a>
+			</div>
+			<!-- if end -->
+			<!-- else-->
+			{% else %}
+			<div class="not_login_user">
+				<a href="login" id="login">로그인</a> 
+				<a href="register" id="newbie">회원가입</a>
+			</div>
+			{% endif %}
+			<!-- else end -->
+		</div>
+		<div class="grid-item" id="postheader"></div>
+		<!-- ======================= header end ========================== -->
+		<div class="grid-item" id="prenav"></div>
+		<div class="grid-item">
+			<div class="grid-nav">
+				<div class="grid-navitem">
+					<a href="music"class="nav_a">음악</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="paint"class="nav_a">그림</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="free"class="nav_a">자유게시판</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="advertise"class="nav_a">광고</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="game"class="nav_a">포인트게임</a>
+				</div>
+			</div>
+		</div>
+		<div class="grid-item" id="postnav"></div>
+		<!-- ======================= nav end ========================== -->
+		<div class="grid-item" id="precenterad"></div>
+		<div class="grid-item"id="centerad">
+			<div class="grid-centerad">
+				<a href="{{ad_random.adurl}}">
+					<img class="top_ad" src="{{ad_random.images.url}}" style="margin:auto auto 15px 280px;">
+				</a>
+			</div>
+		</div>
+		<div class="grid-item" id="postcenterad"></div>
+		<!-- ======================= center ad end ========================== -->
+		<div class="grid-item" id="premaincontainer">
+			<a href="#">
+				<img class="left_ad" src="{% static 'image/lostark.png'%}">
+			</a>
+		</div>
+		<div class="grid-item" id="maincontainer">
+			<div class="grid-maincontainer">
+				<div class="grid-mainitem" style="border:1px solid black; padding : 10px; margin : 30px 30px auto 50px; background: white; border-radius : 5px;">
+					<h3 style="color:darkgray;">음악 게시물</h3>
+					<!-- ================================ 음악 게시물 출력 =================================== -->
+	              	<div class="grid-musicboardhead" style="margin-bottom:0px; background:#96a6bd;">
+						<div class="grid-musicitem" style="color:black;">곡번호</div>
+						<div class="grid-musicitem" style="color:black;">곡제목</div>
+						<div class="grid-musicitem" style="color:black;">작곡자</div>
+						<div class="grid-musicitem"></div>
+						<div class="grid-musicitem" style="color:black;">업로드일자</div>
+						<div class="grid-musicitem" style="color:black;">좋아요</div>
+						<div class="grid-musicitem" style="color:black;">조회수</div> 
+					</div>
+					<!-- for 반복문으로 내용 출력 하면 됨. -->
+					{% if musicpage_obj %}
+					<div class="grid-musicboardcontent" style="background:#f5f5f5; margin-top:0px;">
+	                  {% for dto in musicpage_obj %} 
+	                  <div class="grid-musicitemcontent" style="color:black;">{{forloop.revcounter}}</div>
+	                  <div class="grid-musicitemcontent">
+	                     <a href="/board/ms_board_detail?num={{dto.id}}" style="color:black;">{{dto.title}}</a>
+	                  </div>
+	                  <div class="grid-musicitemcontent"><a href="/portfolio?user_name={{dto.writer}}" style="color:black;">{{dto.writer}}</a></div>
+	                  <div class="grid-musicitem">
+	                     <div class="audioitem">
+	                        <audio src="/media/{{dto.files}}" controls onclick="onkeypress()"></audio>
+	                        <a href="/board/download?path={{ dto.files }}">
+	                           <img class="download_button" src="/static/images/download-button.png">
+	                        </a>
+	                     </div>
+	                  </div>
+	                 	{% if board.created_string == False %}
+		                  <div class="grid-musicitem" style="color:black;">{{ dto.write_dttm|date:'m월 d일' }}</div>
+		                {% else %}
+		                  <div class="grid-musicitem" style="color:black;">{{ dto.created_string }}</div>
+		                {% endif %}
+	                  <div class="grid-musicitem" style="color:black;">{{dto.hits}}</div>
+	                  <div class="grid-musicitem" style="color:black;">{{dto.like_count}}</div>
+	                {% endfor %}
+	                  <!-- for end -->
+	               </div>
+					{% else %}
+					 <h4>검색 결과가 없습니다.</h4>
+					{% endif %}
+					<!--============================= musicpage 분류====================== -->
+					<ul class="pagination justify-content-center" style = "margin-bottom:10px;">
+					<!-- 이전페이지 -->
+					{% if musicpage_obj.has_previous %}
+					<li class="page-item">
+					    <a class="page-link" href="?general_search={{general_search}}&musicpage={{ musicpage_obj.previous_page_number }}&picturepage={{picturepage}}&freepage={{freepage}}">이전</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+					</li>
+					{% endif %}
+					<!-- 페이지리스트 -->
+					{% for page_number in musicpage_obj.paginator.page_range %}
+					{% if page_number >= musicpage_obj.number|add:-3 and page_number <= musicpage_obj.number|add:3 %}
+					{% if page_number == musicpage_obj.number %}
+        			<li class="page-item active" aria-current="page">
+          			  <a class="page-link" href="?general_search={{general_search}}&musicpage={{ page_number }}&picturepage={{picturepage}}&freepage={{freepage}}">{{ page_number }}</a>
+        			</li>
+       			 	{% else %}
+        			<li class="page-item">
+            			<a class="page-link" href="?general_search={{general_search}}&musicpage={{ page_number }}&picturepage={{picturepage}}&freepage={{freepage}}">{{ page_number }}</a>
+        			</li>
+        			{% endif %}
+					{% endif %}
+					{% endfor %}
+					<!-- 다음페이지 -->
+					{% if musicpage_obj.has_next %}
+					<li class="page-item">
+					    <a class="page-link" href="?general_search={{general_search}}&musicpage={{ musicpage_obj.next_page_number }}&picturepage={{picturepage}}&freepage={{freepage}}">다음</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+					</li>
+					{% endif %}
+					</ul>
+					<br>
+					<!-- ======================= 그림 게시판 end =============== -->
+					<h3>그림 게시판</h3>
+					{% if picturepage_obj %}
+					<div class="grid-paintboardcontent" >
+						<!-- for 반복문으로 내용 출력 하면 됨. -->
+						{% for dto in picturepage_obj %}
+						{% if dto %}
+						<div class="paint_item">
+						<a href="/board/pc_board_detail?num={{dto.id}}">
+							<div>
+								<img src="/media/{{dto.files}}" width="195" height="195"
+								class="paint_thumbnail">
+							</div>
+						</a>
+							<div>{{dto.title}}</div>
+							<div>{{dto.writer}}</div>
+							<div>{{dto.write_dttm|date:'Y/m/d'}}</div>
+							<div>{{dto.hits}}</div>
+						
+						</div>
+						{% endif %}
+						{% endfor %}
+						<!-- for end -->
+					</div>
+					{% else %}
+					<img src="{% static 'image/unfound.png' %}" style="margin:10px 0px 20px 20px; width:850px;">
+					{% endif %}
+					<!--============================= picturepage 분류====================== -->
+					<ul class="pagination justify-content-center" style = "margin-bottom:10px;">
+					<!-- 이전페이지 -->
+					{% if picturepage_obj.has_previous %}
+					<li class="page-item">
+					    <a class="page-link" href="?general_search={{general_search}}&picturepage={{ picturepage_obj.previous_page_number }}&musicpage={{musicpage}}&freepage={{freepage}}">이전</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+					</li>
+					{% endif %}
+					<!-- 페이지리스트 -->
+					{% for page_number in picturepage_obj.paginator.page_range %}
+					{% if page_number >= picturepage_obj.number|add:-3 and page_number <= picturepage_obj.number|add:3 %}
+					{% if page_number == picturepage_obj.number %}
+        			<li class="page-item active" aria-current="page">
+          			  <a class="page-link" href="?general_search={{general_search}}&picturepage={{ page_number }}&musicpage={{musicpage}}&freepage={{freepage}}">{{ page_number }}</a>
+        			</li>
+       			 	{% else %}
+        			<li class="page-item">
+            			<a class="page-link" href="?general_search={{general_search}}&picturepage={{ page_number }}&musicpage={{musicpage}}&freepage={{freepage}}">{{ page_number }}</a>
+        			</li>
+        			{% endif %}
+					{% endif %}
+					{% endfor %}
+					<!-- 다음페이지 -->
+					{% if picturepage_obj.has_next %}
+					<li class="page-item">
+					    <a class="page-link" href="?general_search={{general_search}}&picturepage={{ picturepage_obj.next_page_number }}&musicpage={{musicpage}}&freepage={{freepage}}">다음</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+					</li>
+					{% endif %}
+					</ul>
+					<br>
+					<!-- ======================= 그림 게시판 end =============== -->
+					<h3>자유 게시물</h3>
+					<!-- ======================= 자유 게시판 =============== -->
+					<div class="grid-freeboardhead">
+						<div class="grid-freeitem" style="color:black;">글번호</div>
+						<div class="grid-freeitem" style="color:black;">제목</div>
+						<div class="grid-freeitem" style="color:black;">작성자</div>
+						<div class="grid-freeitem" style="color:black;">작성일자</div>
+						<div class="grid-freeitem" style="color:black;">조회수</div>
+						<div class="grid-freeitem" style="color:black;">추천수</div>
+					</div>
+					{% if freepage_obj %}
+					<div class="grid-freeboardcontent">
+					<!-- for 반복문으로 내용 출력 하면 됨. -->
+					{% for dto in freepage_obj %}
+	                  <div class="grid-freeitem" style="color:black;">{{forloop.revcounter}}</div>
+	                  <div class="grid-freeitem" style="color:black;"><a href = '/board/detail/{{dto.id}}'  style="color:black;">{{dto.title}}</a> [{{dto.comment_set.all.count}}]</div>
+	                  <div class="grid-freeitem" style="color:black;"><a href="/portfolio?user_name={{dto.writer}}" style="color:black;">{{dto.writer}}</a></div>
+	                {% if board.created_string == False %}
+	                  <div class="grid-freeitem" style="color:black;">{{ dto.write_dttm|date:'m월 d일' }}</div>
+	                {% else %}
+	                  <div class="grid-freeitem" style="color:black;">{{ dto.created_string }}</div>
+	                {% endif %}
+	                  <div class="grid-freeitem" style="color:black;">{{dto.hits}}</div>
+	                  <div class="grid-freeitem" style="color:black;">{{dto.like_count}}</div>
+	                {% endfor %}
+					<!-- for end -->
+					</div>
+					{% else %}
+					<h4> 검색 결과가 없습니다.</h4>
+					{% endif %}
+					<!--============================= freepage 분류====================== -->
+					<ul class="pagination justify-content-center" style = "margin-bottom:10px;">
+					<!-- 이전페이지 -->
+					{% if freepage_obj.has_previous %}
+					<li class="page-item">
+					    <a class="page-link" href="?general_search={{general_search}}&freepage={{ freepage_obj.previous_page_number }}&musicpage={{musicpage}}&picturepage={{picturepage}}">이전</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+					</li>
+					{% endif %}
+					<!-- 페이지리스트 -->
+					{% for page_number in freepage_obj.paginator.page_range %}
+					{% if page_number >= freepage_obj.number|add:-3 and page_number <= freepage_obj.number|add:3 %}
+					{% if page_number == freepage_obj.number %}
+        			<li class="page-item active" aria-current="page">
+          			  <a class="page-link" href="?general_search={{general_search}}&freepage={{ page_number }}&picturepage={{picturepage}}&musicpage={{musicpage}}">{{ page_number }}</a>
+        			</li>
+       			 	{% else %}
+        			<li class="page-item">
+            			<a class="page-link" href="?general_search={{general_search}}&freepage={{ page_number }}&picturepage={{picturepage}}&musicpage={{musicpage}}">{{ page_number }}</a>
+        			</li>
+        			{% endif %}
+					{% endif %}
+					{% endfor %}
+					<!-- 다음페이지 -->
+					{% if freepage_obj.has_next %}
+					<li class="page-item">
+					    <a class="page-link" href="?general_search={{general_search}}&freepage={{ freepage_obj.next_page_number }}&musicpage={{musicpage}}&picturepage={{picturepage}}">다음</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+					</li>
+					{% endif %}
+					</ul>
+					
+				</div> <!-- main item end -->
+			</div> <!-- main container end -->
+			
+		</div>
+		<div class="grid-item" id="postmaincontainer">
+			<a href="#">
+				<img class="aside_ad" src="{% static 'image/leftad.png'%}">
+			</a>
+		</div>
+		<!--============================== 자유 게시판 end ===============================-->
+		<div class="grid-item" id="prefooter"></div>
+      <div class="grid-item" id="footer" style="padding-top: 20px; padding-left:150px;">
+      <pre style="color:white;">
+      &nbsp;&nbsp;&nbsp;&nbsp;푸른별은 크리에이터 여러분의 창작활동을 응원합니다 | 이용약관 | 개인정보처리방침 | 제휴문의: bluestar@gmail.com
+      
+	  대표이사 조혜림 | 사업자등록번호 390-81-00955 | (06621) 서울 서초구 서초대로74길 33, 3층(서32-15)
+	  
+	  Copyright © 2022 - 2023 BLUESTAR Corp. All rights reserved. 통신판매업신고번호 2022-서울서초-1967
+	 
+	  주식회사 푸른별의 사전 서면 동의 없이 본 사이트의 일체의 정보, 콘텐츠 및 UI 등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
+	  </pre>
+      </div>
+      <div class="grid-item" id="postfooter"></div>
+	</div>
+</body>
+</html>
+
+

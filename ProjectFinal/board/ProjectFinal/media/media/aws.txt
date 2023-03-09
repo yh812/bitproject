@@ -1,0 +1,6 @@
+IAM : 151257424386
+pw : *9889427Ysj
+	admin1234
+
+아니면 이주소!!
+https://151257424386.signin.aws.amazon.com/console

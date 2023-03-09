@@ -1,0 +1,48 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원정보수정</title>
+<link rel="stylesheet" href="/static/css/styles2.css">
+</head>
+<script src="/static/js/jquery-3.6.1.js"></script>
+<script src="/static/js/script_member.js"></script>
+<body class="center">
+	<div class="login-wrapper" style="width:480px;">
+			<a href="/kakao/main" style="float:flex; margin-left:-80px;">
+				<img src="{% static 'image/blueProjectLogo.png'%}" width="100" style="vertical-align: middle; margin-right:-30px; margin-bottom:30px;">
+			</a>
+			<h2 style="font-weight:bold;color: #6A24FE; font-size:55px;"> 정보수정 </h2>
+		<form method="post" action="modify" name="passwdform">
+		{% csrf_token %}
+			<table>
+				<tr>
+					<th colspan="2" width="300px;">
+						{% if message %}
+                     <h3 style="font-weight:bold;">{{message}}</h3>
+                  {% else %}
+                     <h4 style="font-weight:bold;">비밀번호를 다시 <br>입력해주세요</h4>
+                  {% endif %}
+					</th>
+				</tr>
+				
+				<tr>
+					<th> 비밀번호 </th>
+					<td> 
+						<input class="input" type="password" name="passwd" maxlength="50" autofocus placeholder="비밀번호" id="checkpassword" style="background:lightgray; border:2px solid black;">
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">
+						<input type="submit" value="수정" style="color : white; font-weight:bold;" id="modifysub">
+						<input type="button" value="수정취소" onclick="location='main'" style="color : white; font-weight:bold;" id="modifycancel">
+					</th>
+				</tr>			
+			</table>		
+		</form>		
+	</div>
+</body>
+</html>

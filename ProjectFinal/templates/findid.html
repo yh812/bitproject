@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/styles2.css">
+</head>
+<script src = "/static/js/jquery-3.6.1.js"></script>
+
+  <body class="center">
+    <div class="login-wrapper">
+        <h2>아이디 찾기</h2>
+    <form method="post" id="login-form">
+        {% csrf_token %}
+	<input type="text" name="email" class="form-control" placeholder="Email을 입력해주세요" autofocus>
+	<div class="text-center text-danger">{{msg}}</div>
+	<input class="btn btn-primary mr-1" type="submit" value="아이디찾기">
+	<input class="btn btn-secondary" type="button" value="뒤로가기" onclick="location.href='/kakao/login'">
+	</div>
+    </form>
+      	{% if result == 1 %}
+	<script>
+		alert("아이디는 {{userid}}입니다");
+		location.href="/kakao/login";
+	</script>
+
+	{% endif %}
+	
+</body>
+</html>

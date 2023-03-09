@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+
+<link type="text/css" rel="stylesheet"
+	href="{% static 'css/MLProject.css'%}">
+<script src="{% static 'js/project.js'%}"></script>
+<title>MainPage</title>
+
+</head>
+<body>
+	<div class="grid-container">
+		<div class="grid-item" id="preheader"></div>
+		<!-- ======================= header ========================== -->
+		<div class="grid-item" id="header">
+			<div id="main">
+				<img id="imageLogo" src="{% static 'image/movingearth-unscreen.gif'%}">
+				<a href="/kakao/main"> 
+				<img id="textLogo" src="{% static 'image/yellow_logo-removebg.png'%}">
+				</a>
+			</div>
+			<div id="searchingBox">
+            <form method="get" action="/kakao/general_search">
+               <input id="searchingBar" type="text" style="padding-left: 30px;" placeholder="&nbsp;통합검색창" name="general_search" value="{{general_search}}"/>
+               <button type="submit">
+                  <img id="searchingIcon" src="{% static 'image/searching.png'%}">
+               </button>
+            </form>
+         </div>
+			<!-- if user login -->
+			{% if session_id != "None" and session_id %}
+	         <div class="depend_on_user">
+	            <div class="dropdown">
+	               <span class="dropdown-button" id="nickname">
+	                  {{session_id}}님
+	               </span>
+	               <div class="dropdown-content">
+	               
+	               {% if user.social == '-' %}
+	                  <a href="/kakao/modify">회원정보수정</a> 
+	               {% endif %}
+						<a href="/kakao/delete">회원탈퇴</a>
+						<a href="#">{{user.user_current_point}}</a>
+					</div>
+				</div>
+				<a href="#" id="message"
+            	onclick="window.open('/note/notelist?receive_user={{user_name}}', 'window_name', 'width=500, height=500, top=200, left=200');">
+					<img id="message-img" src="{% static 'icon/message.png'%}">
+				</a> 
+				<a href="/kakao/logout" id="/kakao/logout">로그아웃</a> 
+				<a href="/portfolio?user_name={{session_id}}" id="myportfolio">포트폴리오</a>
+				<a href="/polls" id="polls">설문조사</a>
+			</div>
+			<!-- if end -->
+			<!-- else-->
+			{% else %}
+			<div class="not_login_user">
+				<a href="/kakao/login" id="login">로그인</a> 
+				<a href="/kakao/register" id="newbie">회원가입</a>
+			</div>
+			{% endif %}
+			<!-- else end -->
+		</div>
+		<div class="grid-item" id="postheader"></div>
+		<!-- ======================= header end ========================== -->
+		<div class="grid-item" id="prenav"></div>
+		<div class="grid-item">
+			<div class="grid-nav">
+				<div class="grid-navitem">
+					<a href="/kakao/music" class="nav_a">음악</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/paint"class="nav_a">그림</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/free"class="nav_a">자유게시판</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/advertise"class="nav_a">광고</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/game"class="nav_a">포인트게임</a>
+				</div>
+			</div>
+		</div>
+		<div class="grid-item" id="postnav"></div>
+		<!-- ======================= nav end ========================== -->
+		<div class="grid-item" id="precenterad"></div>
+		<div class="grid-item" id="centerad">
+			<div class="grid-centerad">
+				<a href="{{ad_random.adurl}}">
+				{{ad_random.images.urls}}
+					<img class="top_ad" src="{{ad_random.images.url}}" style="margin:auto auto 15px 280px;">
+				</a>
+			</div>
+		</div>
+		<div class="grid-item" id="postcenterad"></div>
+		<!-- ======================= center ad end ========================== -->
+		<div class="grid-item" id="premaincontainer">
+			<a href="#">
+				<img class="left_ad" src="{% static 'image/lostark.png'%}"></a>
+		</div>
+		<div class="grid-item" id="maincontainer">
+			<div class="grid-maincontainer">
+				<div id="content_detail" class="grid-mainitem" style="margin : 30px auto auto 250px; border:1px solid white; border-radius:10px; padding:10px;">
+					<div class="question_content">
+						<span style="font-size:25px; word-break:break-all;"><strong>제목:{{dto.title}}</strong></span><br>
+						<span style="font-size:20px; ">작성자:{{dto.writer}}</span> <br>
+						<span>작성시간 : {{dto.write_dttm}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <br>
+						<span>
+						
+						
+
+						{% if dto.images %}
+						<a href="/media/{{ dto.images }}">
+							광고이미지: <img style="max-width:900px;" src="/media/{{ dto.images }}" border="0">
+						</a>
+						{% endif %}
+						</span>
+						<br>
+						<br>
+						<input class="inputbutton" type="button" value="목록" onclick="location='/kakao/advertise'">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-item" id="postmaincontainer">
+			<a href="#">
+				<img class="aside_ad" src="{% static 'image/leftad.png'%}">
+			</a>
+		</div>
+		<!-- ======================= footer ========================= -->
+		<div class="grid-item" id="prefooter"></div>
+      <div class="grid-item" id="footer" style="padding-top: 20px; padding-left:150px;">
+      <pre style="color:white;">
+      &nbsp;&nbsp;&nbsp;&nbsp;푸른별은 크리에이터 여러분의 창작활동을 응원합니다 | 이용약관 | 개인정보처리방침 | 제휴문의: bluestar@gmail.com
+      
+	  팀 푸른별 | 사업자등록번호 390-81-00955 | (06621) 서울 서초구 서초대로74길 33, 3층(서32-15)
+	  
+	  Copyright © 2022 - 2023 BLUESTAR Corp. All rights reserved. 통신판매업신고번호 2022-서울서초-1967
+	 
+	  주식회사 푸른별의 사전 서면 동의 없이 본 사이트의 일체의 정보, 콘텐츠 및 UI 등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
+	  </pre>
+      </div>
+      <div class="grid-item" id="postfooter"></div>
+	</div>
+</body>
+</html>
+
+

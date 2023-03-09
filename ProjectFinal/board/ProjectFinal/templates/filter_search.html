@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+  <style>
+  table {	
+	text-align: left;
+	background-color: #69bff8;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin: auto;
+  }
+  th{
+  margin: auto;
+  padding: 0 10px 0 10px;
+	color: white;
+  font-size: 18px;	
+  }
+  .search_wrapper{background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  }
+  
+    </style>
+</head>
+
+
+
+
+  </header>
+  <div id="content">
+    <link rel="stylesheet" href="filter1.css" media="all" />
+    <body>
+
+
+    <div class="search_wrapper">
+      <div class="search_wrapper_inner search_contents_area">
+
+        <div class="search_filters" style="background-color: #8aa7ec;">
+
+          <div class="search_filters_title">
+              <i class="fa fa-sliders"></i>
+              <p class="fa_text" style="color:white;">조건설정</p>
+          </div>
+
+          <div class="search_bar_area">
+            <form class="main_search search-form" action="/search/song">
+              <input class="search_input typeahead" placeholder=검색 name="search" type="text" autocomplete="off"
+                value="">
+              <button type="submit" class="search_ico" style="border: none;">
+                <img alt="search_ico" loading="lazy" src="/icon/search-icon.png" />
+              </button>
+            </form>
+
+          </div>
+
+          <span class="search_filter_line"></span>
+
+          <div class="search_filters_cont_area">
+            <div class="search_filters_cont_order_area">
+              <span class="search_filters_cont_title" style="color:white;">정렬</span>
+              <ul style="padding: 0 0 0 0px;">
+                <li class="search_filters_cont_order_btn active">
+                  <a href="javascript: location = updateURLParameter(location.href,'order','recommend')" style="color:white;">추천</a>
+                </li>
+                <li class="search_filters_cont_order_btn " >
+                  <a href="javascript: location = updateURLParameter(location.href,'order','popular')" style="color:white;">인기</a>
+                </li>
+                <li class="search_filters_cont_order_btn ">
+                  <a href="javascript: location = updateURLParameter(location.href,'order','recent')" style="color:white;">최신</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="search_filters_cont_category_area">
+              <span class="search_filters_cont_title" style="color:white;">카테고리 <p class="cont_title_sub">(다중선택 가능)
+                </p></span>
+
+              <ul style="padding: 0px;" class="search_filters_cont_category_ul" >
+                <li class="search_filters_cont_category" style="padding: 10px 0 0 0; background-color: #8aa7ec;">
+                  <div class="search_filters_cont_category_title">
+                    <p style="color:white; font-size: 14px;">주요상황</p>
+                  </div>
+                  <hr style="color: white;">
+
+                  <div class="search_filters_cont_category_detail">
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        예능
+                      </p>
+
+                      <div class="search_filters_tag_input loading" >
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add" > <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13373" name="tag_ids__13373_name" value="13373">
+                          <label for="tag_ids__13373"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13373" name="tag_ids__13373_name" value="13373">
+                          <label for="no_tag_ids__13373"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        잔잔
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__10348" name="tag_ids__10348_name" value="10348">
+                          <label for="tag_ids__10348"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__10348" name="tag_ids__10348_name" value="10348">
+                          <label for="no_tag_ids__10348"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        신남
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13375" name="tag_ids__13375_name" value="13375">
+                          <label for="tag_ids__13375"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13375" name="tag_ids__13375_name" value="13375">
+                          <label for="no_tag_ids__13375"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        일상
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13374" name="tag_ids__13374_name" value="13374">
+                          <label for="tag_ids__13374"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13374" name="tag_ids__13374_name" value="13374">
+                          <label for="no_tag_ids__13374"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        오프닝
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11677" name="tag_ids__11677_name" value="11677">
+                          <label for="tag_ids__11677"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11677" name="tag_ids__11677_name" value="11677">
+                          <label for="no_tag_ids__11677"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        웅장
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13390" name="tag_ids__13390_name" value="13390">
+                          <label for="tag_ids__13390"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13390" name="tag_ids__13390_name" value="13390">
+                          <label for="no_tag_ids__13390"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        코믹
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11388" name="tag_ids__11388_name" value="11388">
+                          <label for="tag_ids__11388"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11388" name="tag_ids__11388_name" value="11388">
+                          <label for="no_tag_ids__11388"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        비트
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13377" name="tag_ids__13377_name" value="13377">
+                          <label for="tag_ids__13377"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13377" name="tag_ids__13377_name" value="13377">
+                          <label for="no_tag_ids__13377"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        긴장
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13383" name="tag_ids__13383_name" value="13383">
+                          <label for="tag_ids__13383"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13383" name="tag_ids__13383_name" value="13383">
+                          <label for="no_tag_ids__13383"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        여행Vlog
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13379" name="tag_ids__13379_name" value="13379">
+                          <label for="tag_ids__13379"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13379" name="tag_ids__13379_name" value="13379">
+                          <label for="no_tag_ids__13379"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        키즈&amp;펫방
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11311" name="tag_ids__11311_name" value="11311">
+                          <label for="tag_ids__11311"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11311" name="tag_ids__11311_name" value="11311">
+                          <label for="no_tag_ids__11311"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        당황
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13376" name="tag_ids__13376_name" value="13376">
+                          <label for="tag_ids__13376"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13376" name="tag_ids__13376_name" value="13376">
+                          <label for="no_tag_ids__13376"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        우울
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13378" name="tag_ids__13378_name" value="13378">
+                          <label for="tag_ids__13378"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13378" name="tag_ids__13378_name" value="13378">
+                          <label for="no_tag_ids__13378"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        축하
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13380" name="tag_ids__13380_name" value="13380">
+                          <label for="tag_ids__13380"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13380" name="tag_ids__13380_name" value="13380">
+                          <label for="no_tag_ids__13380"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        기대
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;"> 
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13381" name="tag_ids__13381_name" value="13381">
+                          <label for="tag_ids__13381"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13381" name="tag_ids__13381_name" value="13381">
+                          <label for="no_tag_ids__13381"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        성공
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__20834" name="tag_ids__20834_name" value="20834">
+                          <label for="tag_ids__20834"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__20834" name="tag_ids__20834_name" value="20834">
+                          <label for="no_tag_ids__20834"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        감동
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13382" name="tag_ids__13382_name" value="13382">
+                          <label for="tag_ids__13382"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13382" name="tag_ids__13382_name" value="13382">
+                          <label for="no_tag_ids__13382"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        공포
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13384" name="tag_ids__13384_name" value="13384">
+                          <label for="tag_ids__13384"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13384" name="tag_ids__13384_name" value="13384">
+                          <label for="no_tag_ids__13384"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        귀여운
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13385" name="tag_ids__13385_name" value="13385">
+                          <label for="tag_ids__13385"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13385" name="tag_ids__13385_name" value="13385">
+                          <label for="no_tag_ids__13385"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        달달&amp;연애
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13386" name="tag_ids__13386_name" value="13386">
+                          <label for="tag_ids__13386"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13386" name="tag_ids__13386_name" value="13386">
+                          <label for="no_tag_ids__13386"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        실패
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13387" name="tag_ids__13387_name" value="13387">
+                          <label for="tag_ids__13387"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13387" name="tag_ids__13387_name" value="13387">
+                          <label for="no_tag_ids__13387"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        궁금
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13388" name="tag_ids__13388_name" value="13388">
+                          <label for="tag_ids__13388"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13388" name="tag_ids__13388_name" value="13388">
+                          <label for="no_tag_ids__13388"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        장면전환
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13389" name="tag_ids__13389_name" value="13389">
+                          <label for="tag_ids__13389"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13389" name="tag_ids__13389_name" value="13389">
+                          <label for="no_tag_ids__13389"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        미스테리
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11296" name="tag_ids__11296_name" value="11296">
+                          <label for="tag_ids__11296"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11296" name="tag_ids__11296_name" value="11296">
+                          <label for="no_tag_ids__11296"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        심각
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13391" name="tag_ids__13391_name" value="13391">
+                          <label for="tag_ids__13391"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13391" name="tag_ids__13391_name" value="13391">
+                          <label for="no_tag_ids__13391"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        빠른
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13392" name="tag_ids__13392_name" value="13392">
+                          <label for="tag_ids__13392"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13392" name="tag_ids__13392_name" value="13392">
+                          <label for="no_tag_ids__13392"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="search_filters_cont_category_more" style="padding: 0 0 0 0; background-color:#79b3f4">
+                    <span data-close="닫기" data-view_more="더 보기" style="background-color: #79b3f4;"></span>
+                  </div>
+                </li>
+                <li class="search_filters_cont_category" style="padding: 0 0 0 0; background-color:#8aa7ec;">
+                  <div class="search_filters_cont_category_title">
+                    <p style="color:white; font-size: 14px;" p>영상장르</p>
+                  </div>
+                  <hr style="color: white;">
+
+                  <div class="search_filters_cont_category_detail">
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        기업
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13766" name="tag_ids__13766_name" value="13766">
+                          <label for="tag_ids__13766"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13766" name="tag_ids__13766_name" value="13766">
+                          <label for="no_tag_ids__13766"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        광고
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__13728" name="tag_ids__13728_name" value="13728">
+                          <label for="tag_ids__13728"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__13728" name="tag_ids__13728_name" value="13728">
+                          <label for="no_tag_ids__13728"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        게임방송
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11322" name="tag_ids__11322_name" value="11322">
+                          <label for="tag_ids__11322"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11322" name="tag_ids__11322_name" value="11322">
+                          <label for="no_tag_ids__11322"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        지식
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11302" name="tag_ids__11302_name" value="11302">
+                          <label for="tag_ids__11302"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11302" name="tag_ids__11302_name" value="11302">
+                          <label for="no_tag_ids__11302"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        토크
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11317" name="tag_ids__11317_name" value="11317">
+                          <label for="tag_ids__11317"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11317" name="tag_ids__11317_name" value="11317">
+                          <label for="no_tag_ids__11317"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        스포츠
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11326" name="tag_ids__11326_name" value="11326">
+                          <label for="tag_ids__11326"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11326" name="tag_ids__11326_name" value="11326">
+                          <label for="no_tag_ids__11326"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        영화
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11308" name="tag_ids__11308_name" value="11308">
+                          <label for="tag_ids__11308"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11308" name="tag_ids__11308_name" value="11308">
+                          <label for="no_tag_ids__11308"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        애니메이션
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11309" name="tag_ids__11309_name" value="11309">
+                          <label for="tag_ids__11309"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11309" name="tag_ids__11309_name" value="11309">
+                          <label for="no_tag_ids__11309"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        ASMR
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11319" name="tag_ids__11319_name" value="11319">
+                          <label for="tag_ids__11319"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11319" name="tag_ids__11319_name" value="11319">
+                          <label for="no_tag_ids__11319"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        웨딩
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11316" name="tag_ids__11316_name" value="11316">
+                          <label for="tag_ids__11316"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11316" name="tag_ids__11316_name" value="11316">
+                          <label for="no_tag_ids__11316"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        패션
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11320" name="tag_ids__11320_name" value="11320">
+                          <label for="tag_ids__11320"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11320" name="tag_ids__11320_name" value="11320">
+                          <label for="no_tag_ids__11320"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        뷰티
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11310" name="tag_ids__11310_name" value="11310">
+                          <label for="tag_ids__11310"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11310" name="tag_ids__11310_name" value="11310">
+                          <label for="no_tag_ids__11310"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        매드무비
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11323" name="tag_ids__11323_name" value="11323">
+                          <label for="tag_ids__11323"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11323" name="tag_ids__11323_name" value="11323">
+                          <label for="no_tag_ids__11323"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        기술
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11301" name="tag_ids__11301_name" value="11301">
+                          <label for="tag_ids__11301"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11301" name="tag_ids__11301_name" value="11301">
+                          <label for="no_tag_ids__11301"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        댄스
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11327" name="tag_ids__11327_name" value="11327">
+                          <label for="tag_ids__11327"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11327" name="tag_ids__11327_name" value="11327">
+                          <label for="no_tag_ids__11327"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="search_filters_cont_category_more" style="padding: 0 0 0 0; background-color:#79b3f4">
+                    <span data-close="닫기" data-view_more="더 보기" style="background-color: #79b3f4;"></span>
+                  </div>
+                </li>
+                <li class="search_filters_cont_category" style="padding: 0 0 0 0; background-color:#8aa7ec;"">
+                  <div class="search_filters_cont_category_title">
+                    <p style="color:white;  font-size: 14px;" >음악장르</p>
+                  </div>
+                  <hr style="color: white;">
+
+                  <div class="search_filters_cont_category_detail">
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        피아노
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__19829" name="tag_ids__19829_name" value="19829">
+                          <label for="tag_ids__19829"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__19829" name="tag_ids__19829_name" value="19829">
+                          <label for="no_tag_ids__19829"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        클래식
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__10365" name="tag_ids__10365_name" value="10365">
+                          <label for="tag_ids__10365"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__10365" name="tag_ids__10365_name" value="10365">
+                          <label for="no_tag_ids__10365"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        일렉트로닉
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11271" name="tag_ids__11271_name" value="11271">
+                          <label for="tag_ids__11271"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11271" name="tag_ids__11271_name" value="11271">
+                          <label for="no_tag_ids__11271"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        팝
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__10349" name="tag_ids__10349_name" value="10349">
+                          <label for="tag_ids__10349"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__10349" name="tag_ids__10349_name" value="10349">
+                          <label for="no_tag_ids__10349"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        힙합
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11262" name="tag_ids__11262_name" value="11262">
+                          <label for="tag_ids__11262"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11262" name="tag_ids__11262_name" value="11262">
+                          <label for="no_tag_ids__11262"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        시네마틱
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11297" name="tag_ids__11297_name" value="11297">
+                          <label for="tag_ids__11297"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11297" name="tag_ids__11297_name" value="11297">
+                          <label for="no_tag_ids__11297"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        펑크(Funk)
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11298" name="tag_ids__11298_name" value="11298">
+                          <label for="tag_ids__11298"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11298" name="tag_ids__11298_name" value="11298">
+                          <label for="no_tag_ids__11298"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        재즈
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11272" name="tag_ids__11272_name" value="11272">
+                          <label for="tag_ids__11272"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11272" name="tag_ids__11272_name" value="11272">
+                          <label for="no_tag_ids__11272"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        블루스
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11274" name="tag_ids__11274_name" value="11274">
+                          <label for="tag_ids__11274"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11274" name="tag_ids__11274_name" value="11274">
+                          <label for="no_tag_ids__11274"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        라틴
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__18414" name="tag_ids__18414_name" value="18414">
+                          <label for="tag_ids__18414"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__18414" name="tag_ids__18414_name" value="18414">
+                          <label for="no_tag_ids__18414"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        얼터너티브
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__19813" name="tag_ids__19813_name" value="19813">
+                          <label for="tag_ids__19813"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__19813" name="tag_ids__19813_name" value="19813">
+                          <label for="no_tag_ids__19813"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        Lo-Fi
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__19809" name="tag_ids__19809_name" value="19809">
+                          <label for="tag_ids__19809"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__19809" name="tag_ids__19809_name" value="19809">
+                          <label for="no_tag_ids__19809"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        레트로
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__21301" name="tag_ids__21301_name" value="21301">
+                          <label for="tag_ids__21301"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__21301" name="tag_ids__21301_name" value="21301">
+                          <label for="no_tag_ids__21301"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        R&amp;B
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11273" name="tag_ids__11273_name" value="11273">
+                          <label for="tag_ids__11273"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11273" name="tag_ids__11273_name" value="11273">
+                          <label for="no_tag_ids__11273"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        하우스
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__21302" name="tag_ids__21302_name" value="21302">
+                          <label for="tag_ids__21302"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__21302" name="tag_ids__21302_name" value="21302">
+                          <label for="no_tag_ids__21302"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        포크 및 어쿠스틱
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11292" name="tag_ids__11292_name" value="11292">
+                          <label for="tag_ids__11292"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11292" name="tag_ids__11292_name" value="11292">
+                          <label for="no_tag_ids__11292"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        록
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__10363" name="tag_ids__10363_name" value="10363">
+                          <label for="tag_ids__10363"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__10363" name="tag_ids__10363_name" value="10363">
+                          <label for="no_tag_ids__10363"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        컨트리
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11330" name="tag_ids__11330_name" value="11330">
+                          <label for="tag_ids__11330"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11330" name="tag_ids__11330_name" value="11330">
+                          <label for="no_tag_ids__11330"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        인디
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11293" name="tag_ids__11293_name" value="11293">
+                          <label for="tag_ids__11293"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11293" name="tag_ids__11293_name" value="11293">
+                          <label for="no_tag_ids__11293"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="search_filters_cont_category_more" style="padding: 0 0 0 0; background-color:#79b3f4">
+                    <span data-close="닫기" data-view_more="더 보기" style="background-color: #79b3f4;"></span>
+                  </div>
+                </li>
+                <li class="search_filters_cont_category" style="padding: 0 0 0 0; background-color:#8aa7ec;" >
+                  <div class="search_filters_cont_category_title" style="background-color:#8aa7ec;">
+                    <p style="color:white; font-size: 14px;">분위기</p>
+                  </div>
+                  <hr style="color: white;">
+                  <div class="search_filters_cont_category_detail">
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        밝은
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__10345" name="tag_ids__10345_name" value="10345">
+                          <label for="tag_ids__10345"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__10345" name="tag_ids__10345_name" value="10345">
+                          <label for="no_tag_ids__10345"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        역동적
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11266" name="tag_ids__11266_name" value="11266">
+                          <label for="tag_ids__11266"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11266" name="tag_ids__11266_name" value="11266">
+                          <label for="no_tag_ids__11266"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        편안한
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui" style="background-color: #8aa7ec;">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11265" name="tag_ids__11265_name" value="11265">
+                          <label for="tag_ids__11265"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11265" name="tag_ids__11265_name" value="11265">
+                          <label for="no_tag_ids__11265"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        기쁜
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__10358" name="tag_ids__10358_name" value="10358">
+                          <label for="tag_ids__10358"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__10358" name="tag_ids__10358_name" value="10358">
+                          <label for="no_tag_ids__10358"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        가벼운
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11294" name="tag_ids__11294_name" value="11294">
+                          <label for="tag_ids__11294"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11294" name="tag_ids__11294_name" value="11294">
+                          <label for="no_tag_ids__11294"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        몽환적인
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__19831" name="tag_ids__19831_name" value="19831">
+                          <label for="tag_ids__19831"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__19831" name="tag_ids__19831_name" value="19831">
+                          <label for="no_tag_ids__19831"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        편안함
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11708" name="tag_ids__11708_name" value="11708">
+                          <label for="tag_ids__11708"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11708" name="tag_ids__11708_name" value="11708">
+                          <label for="no_tag_ids__11708"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        슬픈
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__19827" name="tag_ids__19827_name" value="19827">
+                          <label for="tag_ids__19827"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__19827" name="tag_ids__19827_name" value="19827">
+                          <label for="no_tag_ids__19827"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        카페음악
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__19810" name="tag_ids__19810_name" value="19810">
+                          <label for="tag_ids__19810"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__19810" name="tag_ids__19810_name" value="19810">
+                          <label for="no_tag_ids__19810"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        두려운
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11295" name="tag_ids__11295_name" value="11295">
+                          <label for="tag_ids__11295"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11295" name="tag_ids__11295_name" value="11295">
+                          <label for="no_tag_ids__11295"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        졸린
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11267" name="tag_ids__11267_name" value="11267">
+                          <label for="tag_ids__11267"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11267" name="tag_ids__11267_name" value="11267">
+                          <label for="no_tag_ids__11267"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_filters_tag_area">
+                      <p class="search_filters_tag_name">
+                        섹시한
+                      </p>
+
+                      <div class="search_filters_tag_input loading">
+                        <div class="search_filters_tag_input_loading_ui">
+                          <span class="search_filters_tag_input_loader"></span>
+                        </div>
+                        <div class="tag_ids_add"> <!-- 태그 추가 -->
+                          <input type="radio" id="tag_ids__11291" name="tag_ids__11291_name" value="11291">
+                          <label for="tag_ids__11291"></label>
+                        </div>
+
+                        <div class="tag_ids_not"> <!-- 태그 제외 -->
+                          <input type="radio" id="no_tag_ids__11291" name="tag_ids__11291_name" value="11291">
+                          <label for="no_tag_ids__11291"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="search_filters_cont_category_more" style="padding: 0 0 0 0; background-color:#79b3f4">
+                    <span data-close="닫기" data-view_more="더 보기" style="background-color: #79b3f4;"></span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+
+            <!-- <div class="search_filters_cont_length_area" style="padding: 0 0 0 0;">
+              <span class="search_filters_cont_title" style="color:white; font-size: 14px;">길이 <p
+                  class="cont_title_sub">(단위: 초)</p></span>
+
+              <div class="search_filters_cont_length" style="padding: 0 0 0 0;">
+                <div id="option_wrapper" class="category_2_wrapper">
+                  <div class="category_2_main">
+                    <div class="number_cont">
+                      <p style="color:white"><input type="number" max='220' name='length_gt' id='music_length_gt'
+                          value='' /> 이상
+                        <input type="number" max='220' name='length_lt' id='music_length_lt' value='' /> 이하
+                      </p>
+                    </div>
+                    <button style="background-color: #79b3f4"
+                      onclick="appendParamForce([{'length_gt': $('#music_length_gt').val()}, {'length_lt': $('#music_length_lt').val()}])">설정</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="search_filters_cont_bpm_area">
+              <span class="search_filters_cont_title" style="color:white; font-size: 14px;">템포 <p
+                  class="cont_title_sub">(단위: bpm)</p></span>
+
+              <div class="search_filters_cont_bpm" style="padding: 0 0 0 0; background-color:#8aa7ec;">
+
+                <input type="radio" name="bpm" id="0 - 100" value="0 - 100" >
+                <label for="0 - 100" style="color:white; background-color:#8aa7ec;" >0 - 100</label>
+                <p class="cont_title_sub">(느림)</p>
+                <br>
+                <input type="radio" name="bpm" id="100 - 120" value="100 - 120">
+                <label for="100 - 120" style="color:white">100 - 120</label>
+                <p class="cont_title_sub">(보통)</p>
+                <br>
+                <input type="radio" name="bpm" id="120 - 140" value="120 - 140">
+                <label for="120 - 140" style="color:white">120 - 140</label>
+                <p class="cont_title_sub">(빠름)</p>
+                <br>
+                <input type="radio" name="bpm" id="140 이상" value="140 이상">
+                <label for="140 이상" style="color:white">140 이상</label>
+                <p class="cont_title_sub">(매우빠름)</p>
+                <br>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- start -->
+        <div class="search_contents">
+          <div class="search_bgm_list_area">
+            <h2 class="strikethrough_title">
+              <span class="title_text" style="background-color :#69bff8; border-radius: 5px;" >
+                배경음악 검색 결과
+              </span>
+            </h2>
+            <div class="search_bgm_list">
+              <!-- Song Listing Section -->
+
+            
+                <div>
+                  <table>
+                    <tr>
+                      <th style="width:15%;">플레이</th>
+                      <th style="width:20%">제목/작곡가</th>
+                      <th style="width:15%">소리파형</th>
+                      <th style="width:10%">정보</th>
+                      <th style="width:10%">담기</th>
+                      <th style="width:15%">다운로드</th>
+                      <th style="width:15%">자세히</th>
+                    </tr>
+                  </table>
+                </div>
+              
+              
+
+
+              <!-- Pagination Section -->
+              <div class="pagination_area">
+                <nav class="pagination" role="navigation" aria-label="pager" style="padding-top: 40px;">
+
+
+                  <span class="page current">
+                    1
+                  </span>
+
+                  <span class="page">
+                    <a rel="next" href="/search/song?page=2">2</a>
+                  </span>
+
+                  <span class="page">
+                    <a href="/search/song?page=3">3</a>
+                  </span>
+
+                  <span class="page">
+                    <a href="/search/song?page=4">4</a>
+                  </span>
+
+                  <span class="page">
+                    <a href="/search/song?page=5">5</a>
+                  </span>
+
+                  <span class="page gap">&hellip;</span>
+
+                  <span class="next">
+                    <a rel="next" href="/search/song?page=2"><i class="fa fa-angle-right"></i><span
+                        class="sr-only">다음</span></a>
+                  </span>
+
+                  <span class="last">
+                    <a href="/search/song?page=199"><i class="fa fa-angle-double-right"></i><span
+                        class="sr-only">마지막</span></a>
+                  </span>
+
+                </nav>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end -->
+        <hr style='border: none;margin:0;'>
+      </div><!--search_contents_END-->
+    </div><!--search_wrapper_inner END-->
+  </div><!--search_wrapper END-->
+</body>
+
+</html>

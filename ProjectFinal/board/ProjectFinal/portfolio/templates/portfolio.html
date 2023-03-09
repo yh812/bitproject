@@ -1,0 +1,453 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/port1.css'%}">
+    <title>Portfolio</title>
+    <style>
+    .tab_menu {
+            border-top: 0;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+		a {
+  		text-decoration: none;
+  		color : black;
+		}
+        #stats a,
+        #stats span {
+            white-space: nowrap;
+            margin: 0 10px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .notebutton{
+  background:  rgb(22,9,240);
+  background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+  border: none;
+  color : white;
+  border-radius : 5px;
+}
+	
+        #stats span i {
+            cursor: default;
+        }
+
+        .edit_profile_links {
+            opacity: 0;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            transition: .2s;
+        }
+
+        #hero:hover .edit_profile_links {
+            display: block;
+            opacity: 1;
+        }
+
+        .user_links {
+            position: absolute;
+            left: 20px;
+            bottom: 14px;
+        }
+
+        .user_links a {
+            margin-right: 12px;
+            color: #fff;
+        }
+
+        .action_buttons {
+            position: absolute;
+            right: 20px;
+            bottom: 15px;
+            text-shadow: none;
+        }
+
+        @media screen and (max-width:1080px) {
+            .action_buttons {
+                position: relative;
+                right: 0;
+                bottom: 0;
+                margin: 18px 0 4px;
+            }
+
+            .user_links {
+                display: none;
+            }
+        }
+
+        .badges {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badges>span {
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 22px;
+            background: rgba(0, 0, 0, .3);
+        }
+
+        .badges>span .icon {
+            top: 0;
+        }
+
+        .cameras a {
+            display: inline-block;
+            width: 150px;
+            text-align: center;
+            margin: 0 0 30px 40px;
+            color: #555;
+            font-size: 13px;
+        }
+		.musicnull {
+			line-height: 19px;
+		}
+        .cameras i {
+            display: inline-block;
+            line-height: 130px;
+        }
+		.home_button {
+		float:left;
+		width:70px;
+		height:70px;
+		}
+        .cameras img {
+            vertical-align: middle;
+        }
+
+        .cameras div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .followers img {
+            margin: 0 0 10px 13px;
+            width: 48px;
+            height: 48px;
+        }
+
+        .flex_grid .active {
+            background: rgba(255, 0, 0, .7) !important;
+        }
+
+        .tab_menu+div.profile-audio {
+            background: white;
+        }
+
+        .tab_menu[data-tab="audio"] {
+            border-bottom: none;
+        }
+
+        .pixicon-soundcloud {
+            font-size: 1.3rem;
+            color: #efefef;
+            position: relative;
+            top: 2px;
+        }
+
+        .pixicon2-music {
+            vertical-align: middle;
+        }
+
+        .highlight_keywords {
+            margin: 5px 0 0;
+        }
+
+        .highlight_keywords a {
+            color: white;
+            margin: 5px;
+        }
+
+        .container {
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        .container>a>img {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            /* left: 50%; */
+            transform: translate(-50%, -50%);
+            margin: 5px 5px 5px 5px;
+        }
+
+        .items {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pc_items_li {
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+            border: 0;
+            float:left;
+        }
+		ul{
+   		list-style:none;
+   		}
+
+        .pc_container {
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            position: relative;
+            margin : 5px 5px 5px 5px
+
+        }
+        .ms_container {
+        	color : e2e2e2;
+        	margin-top:auto;
+        	
+        }
+
+       .grid-musicboardhead{
+		   display : grid;
+		   grid-template-columns:400px 500px 150px 400px 300px;
+		   padding : 4px;
+		   background :#96a6bd;
+		   text-align : center;
+		}
+		.grid-musicboardcontent{
+		   display : grid;
+		   grid-template-columns:400px 500px 150px 400px 300px;
+		   padding : 4px;
+		   border-bottom : 1px solid black;
+		   text-align : center;
+		}
+		.grid-musicitemcontent {
+			line-height : 58px;
+		}
+        .items {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+		.download_button {
+			width : 15px;
+			height : 15px;
+			margin-bottom : 19px;
+		}
+		.black_heart {
+			width : 15px;
+			height : 15px;
+			margin-bottom : 19px;
+			margin-left : 13px;
+		}
+        
+
+        .main-contents {
+            padding: 22px 20px;
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+	.btn-2 {
+  background: #6698cb;
+  border: none;
+  border-radius : 5px;
+  color : white;
+  width : 60px;
+  height : 30px;
+}
+.btn-2:before {
+  height: 0%;
+  width: 2px;
+}
+.btn-2:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+.btn-3 {
+  background: #6698cb;
+  border: none;
+  border-radius : 5px;
+  color : white;
+  width : 100px;
+  height : 30px;
+}
+.btn-3:before {
+  height: 0%;
+  width: 2px;
+}
+.btn-3:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+    </style>
+</head>
+{% if user_info %}
+<body class=" ">
+    <div id="wrapper">
+        <div id="content" class="clearfix">
+            <div id="hero" style="margin:0 0 20px;background:#96a6bd;text-align:center">
+                <div style="position:relative;padding-bottom:16px">
+                <a href="/kakao/main"><img style="margin :5px"class = "home_button" src="/static/image/movingearth-unscreen.gif"></a>
+                   <h1 style="font-size:32px;padding-top:25px">{{user_name}}</h1>
+                    <h2 style="max-width:none;line-height:1.5;font-size:15px;padding:10px 20px 0">
+                        {{user_name}} &nbsp;•&nbsp;  {{user_info.email}} &nbsp;•&nbsp; {{user_info.regdate|date:'Y년 m월 d일' }}
+                    </h2>
+                    <div style="text-align:center;margin:22px 0 20px">
+                    {% if user_info.userimg %}
+                        <img src="/media/{{user_info.userimg}}" style="border:2px solid #fff;width:125px;height:125px;border-radius:90px"
+                            alt="프로필 그림주소">
+                    {% else %}
+                    <img alt="프로필그림x" src="/static/image/blueProjectLogo.png" style="border:2px solid #fff;width:125px;height:125px;border-radius:90px">
+                    {% endif %}
+                    </div>
+                    <div class="action_buttons">
+                    {% if login_session %}
+                    {% if login_session == user_info.nickname %}
+                    <button class="btn-2" onclick="window.open('/note/notelist?receive_user={{user_name}}', 'window_name', 'width=500, height=500, top=200, left=200');">
+                        쪽지함
+                    </button>
+                    {% endif %}
+                    <button class="btn-3" onclick="window.open('/note/notewrite?receive_user={{user_name}}', 'window_name', 'width=500, height=450, top=200, left=200');">
+                    	쪽지 보내기
+                    </button>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+                <div>
+                    <div class="flex_grid credits" style="display:block;">
+                    <!--====================== 작업물 업로드 ==================== -->
+                    <p style="margin:20px 5px 14px;font-size:15px"><b>음악</b></p>
+                    	<div class="grid-mainitem">
+							<div class="grid-musicboardhead">
+								<div class="grid-musicitem">제목</div>
+								<div class="grid-musicitem">작곡자</div>
+								<div class="grid-musicitem">조회수</div>
+								<div class="grid-musicitem"></div>
+								<div class="grid-musicitem">업로드일자</div>
+							</div>
+							<div class="grid-musicboardcontent" style="background:#f5f5f5;">
+							{% for ms_board in ms_board_post %}
+							{% if ms_board.files %}
+								   <!-- for 반복문으로 내용 출력 하면 됨. -->
+								   <div class="grid-musicitemcontent" style="overflow:hidden">
+									   <a href="/board/detail/{{ms_board.id}}/">{{ ms_board.title }}
+									   </a>
+								   </div>
+								   <div class="grid-musicitemcontent">{{ms_board.writer}}</div>
+								   <div class="grid-musicitemcontent">{{ms_board.hits}}</div>
+								   <div class="grid-musicitem">
+								   	
+								      <audio src="/media/{{ms_board.files}}" controls></audio>
+								      <a href="/board/download?path={{ ms_board.files }}">
+								      	<img class="download_button" src="/static/images/download-button.png">
+								      </a>
+								      
+								   </div>
+								   <div class="grid-musicitemcontent">{{ms_board.write_dttm}}</div>
+								   <!-- for end -->
+								   {% endif %}
+							{% endfor %}
+							</div>
+						</div>
+                 		<p style="margin:20px 5px 14px;font-size:15px"><b>그림</b></p>
+                 		<div class="picture_class" style="display:block;overflow:auto;">
+                        <ul class="items">
+                        {% for pc_board in pc_board_post %}
+                            <li class="pc_items_li">
+                                <div class="pc_container" >
+                                    <a href="/board/pc_board_detail?num={{pc_board.id}}">
+                                    	<img src="/media/{{ pc_board.files}}" border="0" width="184" height="184" >
+                                    </a>
+                                    <div>
+                                    	{{ pc_board.files}}
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        </div>
+                        <!-- ====================== 작업물end ============== -->
+                        </div>
+                  </div>
+
+            </div>
+        </div>
+
+<!-- 팔로우 -->
+<!--                         <div class = "follow-content" style="display:block">  -->
+	                        <p style="margin:20px 5px 14px;font-size:15px"><b>음악팔로우</b></p>
+	                    	<div class="grid-mainitem">
+								<div class="grid-musicboardhead">
+									<div class="grid-musicitem">제목</div>
+									<div class="grid-musicitem">작곡자</div>
+									<div class="grid-musicitem">조회수</div>
+									<div class="grid-musicitem"></div>
+									<div class="grid-musicitem">업로드일자</div>
+								</div>
+								<div class="grid-musicboardcontent" style="background:#f5f5f5;">
+								{% for ms in ms_follow %}
+								{% if ms.files %}
+									   <!-- for 반복문으로 내용 출력 하면 됨. -->
+									   <div class="grid-musicitemcontent" style="overflow:hidden">
+										   <a href="/board/ms_board_detail?num={{ms.id}}">{{ ms.title }}
+										   </a>
+									   </div>
+									   <div class="grid-musicitemcontent">{{ms.writer}}</div>
+									   <div class="grid-musicitemcontent">{{ms.hits}}</div>
+									   <div class="grid-musicitem">
+									   	
+									      <audio src="/media/{{ms.files}}" controls></audio>
+									      <a href="/board/download?path=media/{{ ms.files }}">
+									      	<img class="download_button" src="/static/images/download-button.png">
+									      </a>
+									      
+									   </div>
+									   <div class="grid-musicitemcontent">{{ms.write_dttm}}</div>
+									   <!-- for end -->
+									   {% endif %}
+								{% endfor %}
+								</div>
+							</div>
+	                        <p style="margin:20px 5px 14px;font-size:15px"><b>그림팔로우</b></p>
+	                        <ul class="items">
+	                        {% for pc in pc_follow %}
+							
+	                            <li class="pc_items_li">
+	                                <div class="pc_container" >
+	                                    <a href="/board/pc_board_detail?num={{pc.id}}">
+	                                    	<img src="/media/{{ pc.files}}" border="0" width="184" height="184" >
+	                                    </a>
+	                                    <div>
+	                                    	{{ pc.files}}
+	                                    </div>
+	                                </div>
+	                            </li>
+	                        {% endfor %}
+	                        </ul>
+                        </div>
+{% endif %}
+</body>
+</html>

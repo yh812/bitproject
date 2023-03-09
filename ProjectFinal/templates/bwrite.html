@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+   
+<!-- base css/ js -->   
+<link type="text/css" rel="stylesheet" href="{% static 'css/MLProject.css'%}">
+<title>MainPage</title>
+</head>
+<body>
+	{% csrf_token %}
+	<div class="grid-container">
+		<div class="grid-item" id="preheader"></div>
+		<!-- ======================= header ========================== -->
+		<div class="grid-item" id="header">
+			<div id="main">
+				<img id="imageLogo" src="{% static 'image/movingearth-unscreen.gif'%}">
+				<a href="/kakao/main"><img id="textLogo"
+					src="{% static 'image/yellow_logo-removebg.png'%}"> </a>
+			</div>
+			<div id="searchingBox">
+            <form method="get" action="/kakao/general_search">
+               <input id="searchingBar" type="text" style="padding-left: 30px;" placeholder="&nbsp;통합검색창" name="general_search" value="{{general_search}}"/>
+               <button type="submit">
+                  <img id="searchingIcon" src="{% static 'image/searching.png'%}">
+               </button>
+            </form>
+         </div>
+			<!-- if user login -->
+			{% if session_id != "None" and session_id %}
+	         <div class="depend_on_user">
+	            <div class="dropdown">
+	               <span class="dropdown-button" id="nickname">
+	                  {{session_id}}님
+	               </span>
+	               <div class="dropdown-content">
+	               
+	               {% if dto.social == '-' %}
+	                  <a href="/kakao/modify">회원정보수정</a> 
+	               {% endif %}
+						<a href="/kakao/delete">회원탈퇴</a><br>
+						<a href="#">포인트</a>
+					</div>
+				</div>
+				<a href="#" id="message"
+            	onclick="window.open('/note/notelist?receive_user={{user_name}}', 'window_name', 'width=500, height=500, top=200, left=200');">
+            	<img id="message-img" src="{% static 'icon/message.png'%}"></a> 
+				<a href="/kakao/logout" id="logout">로그아웃</a> 
+				<a href="/portfolio?user_name={{session_id}}" id="myportfolio">포트폴리오</a> 
+				<a href="/polls" id="polls">설문조사</a>
+			</div>
+			<!-- if end -->
+			<!-- else-->
+			{% else %}
+			<div class="not_login_user">
+				<a href="/kakao/login" id="login">로그인</a> <a href="/kakao/register" id="newbie">회원가입</a>
+			</div>
+			{% endif %}
+			<!-- else end -->
+		</div>
+		<div class="grid-item" id="postheader"></div>
+		<!-- ======================= header end ========================== -->
+		<div class="grid-item" id="prenav"class="nav_a"></div>
+		<div class="grid-item">
+			<div class="grid-nav">
+				<div class="grid-navitem">
+					<a href="/kakao/music"class="nav_a">음악</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/paint"class="nav_a">그림</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/free"class="nav_a">자유게시판</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/advertise"class="nav_a">광고</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="/kakao/game"class="nav_a">포인트게임</a>
+				</div>
+			</div>
+		</div>
+		<div class="grid-item" id="postnav"></div>
+		<!-- ======================= nav end ========================== -->
+		<div class="grid-item" id="precenterad"></div>
+		<div class="grid-item" id="centerad">
+			<div class="grid-centerad">
+				<a href="{{ad_random.adurl}}">
+					<img class="top_ad" src="{{ad_random.images.url}}" style="margin:auto auto 15px 280px;">
+				</a>
+			</div>
+		</div>
+		<div class="grid-item" id="postcenterad"></div>
+		<!-- ======================= center ad end ========================== -->
+		<div class="grid-item" id="premaincontainer">
+				<a href="#">
+					<img class="left_ad" src="{% static 'image/lostark.png'%}">
+				</a>
+		</div>
+		<div class="grid-item" id="maincontainer">
+			<div class="grid-maincontainer">
+				<div id="content_detail" class="grid-mainitem"  style="margin : 30px auto auto 250px; border:1px solid white; border-radius:10px; padding:10px;">
+					<form method="post" action="{% url 'board:bwrite' %}" enctype="multipart/form-data">
+		            {% csrf_token %}
+			            <input type="hidden" name="num" value="{{num}}">
+			            <input type="hidden" name="ref" value="{{ref}}">
+			            <input type="hidden" name="restep" value="{{restep}}">
+			            <input type="hidden" name="relevel" value="{{relevel}}">
+			            <table>
+							<tr>
+							   <th style="font-size:15px;"> 글제목 </th>
+							   <td colspan="3"> <input class="input" type="text" name="title" maxlength="48" style="width:520px;"> 
+							   </td>
+							</tr>
+							<tr><th><br></th></tr>
+							<tr>
+							   <th style="font-size:15px;"> 글내용&nbsp;</th>
+							   <td>
+							      <textarea name="contents" id="summernote" class="summernote"></textarea>
+							      <script type="text/javascript">
+									$('#summernote').summernote({
+									    
+									    tabsize: 2,
+									    width:800,
+									    height: 300,
+									    toolbar: [
+									         ['style', ['style']],
+									         ['fontname', ['fontname']],
+									         ['fontsize', ['fontsize']],
+									         ['font style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+									         ['color', ['forecolor','color']],
+									         ['para', ['ul', 'ol', 'paragraph']],
+									         ['table', ['table']],
+									         ['insert', ['link', 'picture', 'video']],
+									         ['view', ['fullscreen', 'codeview', 'help']],
+									       ],
+									           defaultFontName:'바탕',
+									           fontNames: ['Arial', 'Comic Sans MS', 'Helvetica','맑은 고딕','궁서','굴림','돋음체','바탕'],
+									           fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+									  });
+								</script>
+							   </td>
+							</tr>
+							<tr>
+							   <th style="font-size:15px;"> 첨부파일&nbsp; </th>
+							   <td>
+							      <input class="input" type="file" name="files">
+							   </td>
+							</tr>
+							<tr><th><br></th></tr>
+							<tr>
+							   <th colspan="2">
+							      <script language="javascript">
+								   function check_onclick(){
+								      if($("input[name=title]").val() == ""){
+								         alert("제목은 필수 입니다.");
+								      }
+								   }
+								  </script>
+							   <input class="inputbutton" type="submit" onclick="check_onclick()" value="작성">
+							   <input class="inputbutton" type="reset" value="취소">
+							   <input class="inputbutton" type="button" value="목록" onclick="location='/kakao/free'">
+								</th>
+							</tr>               
+						</table>      
+					</form>   
+				</div>
+			</div>
+		</div>
+		<div class="grid-item" id="postmaincontainer">
+				<a href="#">
+					<img class="aside_ad" src="{% static 'image/leftad.png'%}">
+				</a>
+		</div>
+		<!-- ======================== 추천 부분 end ============================= -->
+		<div class="grid-item" id="prefooter"></div>
+      <div class="grid-item" id="footer" style="padding-top: 20px; padding-left:150px;">
+      <pre style="background:none; border:none; color:white;">
+      &nbsp;&nbsp;&nbsp;&nbsp;푸른별은 크리에이터 여러분의 창작활동을 응원합니다 | 이용약관 | 개인정보처리방침 | 제휴문의: bluestar@gmail.com
+      
+	  팀 푸른별 | 사업자등록번호 390-81-00955 | (06621) 서울 서초구 서초대로74길 33, 3층(서32-15)
+	  
+	  Copyright © 2022 - 2023 BLUESTAR Corp. All rights reserved. 통신판매업신고번호 2022-서울서초-1967
+	 
+	  주식회사 푸른별의 사전 서면 동의 없이 본 사이트의 일체의 정보, 콘텐츠 및 UI 등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
+	  </pre>
+      </div>
+      <div class="grid-item" id="postfooter"></div>
+	</div>
+</body>
+</html>
+
+

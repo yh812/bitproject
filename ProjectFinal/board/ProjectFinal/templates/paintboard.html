@@ -1,0 +1,503 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/filter1.css'%}" media="all" />
+<link type="text/css" rel="stylesheet"
+	href="{% static 'css/MLProject.css'%}">
+<script src="{% static 'js/project.js'%}"></script>
+<title>MainPage</title>
+
+<style>
+select {
+width:120px;
+height:38px;
+float:left; 
+border: 1px solid #ccc;
+font-family: inherit;  
+
+background: url('/static/icon/0004.jpg') no-repeat 95% 50% #ffffff; 
+border-radius: 0px; 
+-webkit-appearance: none; 
+-moz-appearance: none;
+appearance: none;
+}
+
+select::-ms-expand {
+        display: none;
+}
+</style>
+</head>
+<body>
+	<div class="grid-corecontainer">
+		<div class="grid-item" id="preheader"></div>
+		<!-- ======================= header ========================== -->
+		<div class="grid-item" id="header">
+			<div id="main">
+				<img id="imageLogo" src="{% static 'image/movingearth-unscreen.gif'%}">
+				<a href="main">
+					<img id="textLogo" src="{% static 'image/yellow_logo-removebg.png'%}"> 
+				</a>
+			</div>
+			<div id="searchingBox">
+            <form method="get" action="/kakao/general_search">
+               <input id="searchingBar" type="text" style="padding-left: 30px;" placeholder="&nbsp;통합검색창" name="general_search" value="{{general_search}}"/>
+               <button type="submit">
+                  <img id="searchingIcon" src="{% static 'image/searching.png'%}">
+               </button>
+            </form>
+         </div>
+			<!-- if user login -->
+			{% if session_id != "None" and session_id %}
+			<div class="depend_on_user">
+				<div class="dropdown">
+					<span class="dropdown-button" id="nickname">
+						{{session_id}}님
+					</span>
+					<div class="dropdown-content">
+					{% if user.social == '-'%}
+						<a href="modify">회원정보수정</a> 
+					{% endif %}
+						<a href="delete">회원탈퇴</a><br>
+						<a href="#">{{user.user_current_point}}점</a>
+					</div>
+				</div>
+				<a href="#" id="message"
+            	onclick="window.open('/note/notelist?receive_user={{user_name}}', 'window_name', 'width=500, height=500, top=200, left=200');"> 
+					<img id="message-img" src="{% static 'icon/message.png'%}">
+				</a> 
+				<a href="logout" id="logout">로그아웃</a> 
+				<a href="/portfolio?user_name={{session_id}}" id="myportfolio">포트폴리오</a> 
+				<a href="/polls" id="polls">설문조사</a>
+			</div>
+			<!-- if end -->
+			<!-- else-->
+			{% else %}
+			<div class="not_login_user">
+				<a href="login" id="login">로그인</a> 
+				<a href="register" id="newbie">회원가입</a>
+			</div>
+			{% endif %}
+			<!-- else end -->
+		</div>
+		<div class="grid-item" id="postheader"></div>
+		<!-- ======================= header end ========================== -->
+		<div class="grid-item" id="prenav"></div>
+		<div class="grid-item">
+			<div class="grid-nav">
+				<div class="grid-navitem">
+					<a href="music"class="nav_a">음악</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="paint"class="nav_a">그림</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="free"class="nav_a">자유게시판</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="advertise"class="nav_a">광고</a>
+				</div>
+				<div class="grid-navitem">
+					<a href="game"class="nav_a">포인트게임</a>
+				</div>
+			</div>
+		</div>
+		<div class="grid-item" id="postnav"></div>
+		<!-- ======================= nav end ========================== -->
+		<div class="grid-item" id="precenterad"></div>
+		<div class="grid-item" id="centerad">
+		<div class="grid-centerad">
+			<a href="{{ad_random.adurl}}">
+				<img class="top_ad"src="{{ad_random.images.url}}" style="margin:auto auto 15px 280px;">
+			</a>
+		</div>
+		</div>
+		<div class="grid-item" id="postcenterad"></div>
+		<!-- ======================= center ad end ========================== -->
+		<div class="grid-item" id="premaincontainer"></div>
+		<div class="grid-item" id="maincontainer">
+			<div class="grid-musiccontainer">
+				<div class="grid-mainitem">
+					<!-- 필터바 -->
+					<div class="search_wrapper" style="margin-bottom: 160px;">
+						<div class="search_wrapper_inner search_contents_area">
+
+							<div class="search_filters" style="background-color: #2d2d94;">
+
+								<div class="search_filters_title">
+									<i class="fa fa-sliders"></i>
+									<p class="fa_text" style="color: white;">조건설정</p>
+								</div>
+
+								<div class="search_bar_area">
+									<form class="main_search search-form" method="post"  action="/kakao/paint">
+									{%csrf_token%}
+										<input class="search_input typeahead" placeholder=태그검색
+											name="catekey" type="text" autocomplete="off" value="{{catekey}}">
+										<button type="submit" class="search_ico" style="border: none;">
+											<img alt="search_ico" loading="lazy"
+												src="{% static 'icon/search-icon.png'%}" />
+										</button>
+									</form>
+
+								</div>
+
+								<span class="search_filter_line"></span>
+									<div class="search_filters_cont_area">
+			                           <div class="search_filters_cont_order_area">
+			                              <span class="search_filters_cont_title" style="color: white;">정렬</span>
+			                                 <ul style="padding: 0 0 0 0px;">
+						                        <li class="search_filters_cont_order_btn">
+						                           <a href="/kakao/paint?sort=write_dttm&cate={{cate}}"
+						                              style="color: white;">최신</a></li>
+						                        <li class="search_filters_cont_order_btn ">
+						                           <a href="/kakao/paint?sort=like&cate={{cate}}" 
+						                           style="color: white;">인기</a></li>
+						                        <li class="search_filters_cont_order_btn ">
+						                           <a href="/kakao/paint?sort=follow&cate={{cate}}"
+						                           style="color: white;">추천</a></li>
+						                    </ul>
+			                           </div>
+									<div class="search_filters_cont_category_area">
+										<span class="search_filters_cont_title" style="color: white;">카테고리
+										</span>
+
+										<ul style="padding: 0px;"
+											class="search_filters_cont_category_ul">
+											<li class="search_filters_cont_category"
+												style="padding: 5px 0 0 0; background-color: #2d2d94;">
+												<hr style="color: white;">
+
+												<div class="search_filters_cont_category_detail">
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=일러스트"><p class="search_filters_tag_name">일러스트</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=스케치"><p class="search_filters_tag_name">스케치</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=유화"><p class="search_filters_tag_name">유화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=초상화"><p class="search_filters_tag_name">초상화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=추상화"><p class="search_filters_tag_name">추상화</p></a>
+													</div>	
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=풍경화"><p class="search_filters_tag_name">풍경화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=풍속화"><p class="search_filters_tag_name">풍속화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=파스텔화"><p class="search_filters_tag_name">파스텔화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=정밀묘사"><p class="search_filters_tag_name">정밀묘사</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=정물화"><p class="search_filters_tag_name">정물화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=아크릴화"><p class="search_filters_tag_name">아크릴화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=움짤"><p class="search_filters_tag_name">움짤</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=수묵화"><p class="search_filters_tag_name">수묵화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=사진"><p class="search_filters_tag_name">사진</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=민화"><p class="search_filters_tag_name">민화</p></a>
+													</div>
+													<div class="search_filters_tag_area">
+														<a href="/kakao/paint?sort={{sort}}&cate=사군자"><p class="search_filters_tag_name">사군자</p></a>
+													</div>
+											
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ========================그림 메인 출력 ===========================-->
+				<div class="grid-mainitem" id="paintwrap" style="margin-left:20px; padding : 10px; border:1px solid white; border-radius:5px; background:white; height:1100px;">
+					<div style="overflow:auto;">
+						<a href="/board/pc_board_write" style="float:right; margin-right:10px;">글쓰기</a>
+					</div>
+					{% if pageobject %}
+					<div class="grid-paintboardcontent">
+						<!-- for 반복문으로 내용 출력 하면 됨. -->
+						{% for dto in pageobject %}
+						{% if dto %}
+						<div class="paint_item">
+						<a href="/board/pc_board_detail?num={{dto.id}}">
+							<div>
+								<img src="/media/{{dto.files}}" style="width:195px; height:195px;"
+								class="paint_thumbnail">
+							</div>
+						</a>
+							<div>{{dto.title}}</div>
+							<div>{{dto.writer}}</div>
+							<div>{{dto.write_dttm|date:'Y/m/d'}}</div>
+							<div>{{dto.like_count}}</div>
+							<div>{{dto.follow_count}}</div>
+						</div>
+						{% endif %}
+						{% endfor %}
+						<!-- for end -->
+					</div>
+					{% else %}
+					<img src="{% static 'image/unfound.png' %}" style="margin:10px 0px 20px 20px; width:850px;">
+					{% endif %}
+					<a href="/board/pc_board_write" style="float:right; margin-right:10px;">글쓰기</a>
+					<!-- ===========================catepage=========================== -->
+					{% if cate and sort == "" %}
+					<ul class="pagination justify-content-center" style = "margin-bottom:10px;">
+					<!-- 이전페이지 -->
+					{% if pageobject.has_previous %}
+					<li class="page-item">
+					    <a class="page-link" href="?cate={{cate}}&page={{ pageobject.previous_page_number }}">이전</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+					</li>
+					{% endif %}
+					<!-- 페이지리스트 -->
+					{% for page_number in pageobject.paginator.page_range %}
+					{% if page_number >= pageobject.number|add:-3 and page_number <= pageobject.number|add:3 %}
+					{% if page_number == pageobject.number %}
+        			<li class="page-item active" aria-current="page">
+          			  <a class="page-link" href="?cate={{cate}}&page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+       			 	{% else %}
+        			<li class="page-item">
+            			<a class="page-link" href="?cate={{cate}}&page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+        			{% endif %}
+					{% endif %}
+					{% endfor %}
+					<!-- 다음페이지 -->
+					{% if pageobject.has_next %}
+					<li class="page-item">
+					    <a class="page-link" href="?cate={{cate}}&page={{ pageobject.next_page_number }}">다음</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+					</li>
+					{% endif %}
+					</ul>
+					
+					{% else %}
+					 <!-- ===========================sortpage=========================== -->
+					{% if sort and cate == "" %}
+					<ul class="pagination justify-content-center" style = "margin-bottom:10px;">
+					<!-- 이전페이지 -->
+					{% if pageobject.has_previous %}
+					<li class="page-item">
+					    <a class="page-link" href="?sort={{sort}}&page={{ pageobject.previous_page_number }}">이전</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+					</li>
+					{% endif %}
+					<!-- 페이지리스트 -->
+					{% for page_number in pageobject.paginator.page_range %}
+					{% if page_number >= pageobject.number|add:-3 and page_number <= pageobject.number|add:3 %}
+					{% if page_number == pageobject.number %}
+        			<li class="page-item active" aria-current="page">
+          			  <a class="page-link" href="?sort={{sort}}&page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+       			 	{% else %}
+        			<li class="page-item">
+            			<a class="page-link" href="?sort={{sort}}&page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+        			{% endif %}
+					{% endif %}
+					{% endfor %}
+					<!-- 다음페이지 -->
+					{% if pageobject.has_next %}
+					<li class="page-item">
+					    <a class="page-link" href="?sort={{sort}}&page={{ pageobject.next_page_number }}">다음</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+					</li>
+					{% endif %}
+					</ul>
+					
+					{% else %}
+					
+					<!-- ===========================cate+sortpage=========================== -->
+					{% if cate and sort %}
+					<ul class="pagination justify-content-center" style = "margin-bottom:10px;">
+					<!-- 이전페이지 -->
+					{% if pageobject.has_previous %}
+					<li class="page-item">
+					    <a class="page-link" href="?sort={{sort}}&cate={{cate}}&page={{ pageobject.previous_page_number }}">이전</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+					</li>
+					{% endif %}
+					<!-- 페이지리스트 -->
+					{% for page_number in pageobject.paginator.page_range %}
+					{% if page_number >= pageobject.number|add:-3 and page_number <= pageobject.number|add:3 %}
+					{% if page_number == pageobject.number %}
+        			<li class="page-item active" aria-current="page">
+          			  <a class="page-link" href="?sort={{sort}}&cate={{cate}}&page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+       			 	{% else %}
+        			<li class="page-item">
+            			<a class="page-link" href="?sort={{sort}}&cate={{cate}}&page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+        			{% endif %}
+					{% endif %}
+					{% endfor %}
+					<!-- 다음페이지 -->
+					{% if pageobject.has_next %}
+					<li class="page-item">
+					    <a class="page-link" href="?sort={{sort}}&cate={{cate}}&page={{ pageobject.next_page_number }}">다음</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+					</li>
+					{% endif %}
+					</ul>
+					
+					{% else %}
+					
+					<!--============================= page 분류====================== -->
+					<ul class="pagination justify-content-center" style = "margin-bottom:10px;">
+					<!-- 이전페이지 -->
+					{% if pageobject.has_previous %}
+					<li class="page-item">
+					    <a class="page-link" href="?page={{ pageobject.previous_page_number }}">이전</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+					</li>
+					{% endif %}
+					<!-- 페이지리스트 -->
+					{% for page_number in pageobject.paginator.page_range %}
+					{% if page_number >= pageobject.number|add:-3 and page_number <= pageobject.number|add:3 %}
+					{% if page_number == pageobject.number %}
+        			<li class="page-item active" aria-current="page">
+          			  <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+       			 	{% else %}
+        			<li class="page-item">
+            			<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        			</li>
+        			{% endif %}
+					{% endif %}
+					{% endfor %}
+					<!-- 다음페이지 -->
+					{% if pageobject.has_next %}
+					<li class="page-item">
+					    <a class="page-link" href="?page={{ pageobject.next_page_number }}">다음</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled">
+					    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+					</li>
+					{% endif %}
+					</ul>
+					{% endif %}
+					{% endif %}
+					{% endif %}
+					<!--============================= page 분류====================== -->
+					<div class="search_bar_area">
+							<form name="filtersearch" id="filtersearch" method="post"  action="/kakao/paint">
+							{%csrf_token%}
+								<div class ="bottomsearch" style="display:grid; grid-template-columns:auto auto auto; width:410px;">
+									<div class="selectbox" style="margin-left : 220px">
+										<select name="searchkey" id=searchkey">
+										{% if searchkey == "name" %}
+											<option value="name" selected>제목</option>
+											<option value="content">내용</option>	
+											<option value="name_content">제목+내용</option>
+											<option value="writer">작성자</option>
+											{% elif searchkey == "content" %}
+											<option value="name">제목</option>
+											<option value="content" selected>내용</option>	
+											<option value="name_content">제목+내용</option>
+											<option value="writer">작성자</option>
+											{% elif searchkey == "writer"%}
+											<option value="name">제목</option>
+											<option value="content">내용</option>	
+											<option value="name_content">제목+내용</option>
+											<option value="writer" selected>작성자</option>
+											{% else %}
+											<option value="name">제목</option>
+											<option value="content">내용</option>	
+											<option value="name_content" selected>제목+내용</option>
+											<option value="writer">작성자</option>
+											{% endif %}
+										</select>
+									</div>
+								<input style="margin:0px; padding:0px; border-radius : 0px; border: 1px solid #ccc; width:230px; height:38px;" placeholder=검색창
+									name="search" type="text" autocomplete="off" value="{{search}}">
+								<button type="submit" style="margin-left:-6.5px;padding:0px; width:60px; height:38px;border: 1px solid #ccc;" value="조회">
+								<img alt="search_ico" loading="lazy"
+									src="{% static 'icon/search-icon.png'%}" />
+								</button>
+							</div>
+						</form>
+					</div>
+				
+				</div>
+				<!-- ======================== 그림 end ====================== -->
+				<div class="grid-mainitem">
+				</div>
+			</div>
+		</div>
+
+		<div class="grid-item" id="postmaincontainer">
+			<a href="#">
+				<img class="aside_ad" src="{% static 'image/leftad.png'%}">
+			</a>
+		</div>
+		
+		<div class="grid-item" id="prefooter"></div>
+      <div class="grid-item" id="footer" style="padding-top: 20px; padding-left:150px;">
+      <pre style="color:white;">
+      &nbsp;&nbsp;&nbsp;&nbsp;푸른별은 크리에이터 여러분의 창작활동을 응원합니다 | 이용약관 | 개인정보처리방침 | 제휴문의: bluestar@gmail.com
+      
+	  팀 푸른별 | 사업자등록번호 390-81-00955 | (06621) 서울 서초구 서초대로74길 33, 3층(서32-15)
+	  
+	  Copyright © 2022 - 2023 BLUESTAR Corp. All rights reserved. 통신판매업신고번호 2022-서울서초-1967
+	 
+	  주식회사 푸른별의 사전 서면 동의 없이 본 사이트의 일체의 정보, 콘텐츠 및 UI 등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
+	  </pre>
+      </div>
+      <div class="grid-item" id="postfooter"></div>
+	</div>
+</body>
+</html>
+
+

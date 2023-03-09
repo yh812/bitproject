@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>쪽지함</title>
+<link type="text/css" rel="stylesheet" href="{% static 'css/note.css'%}">
+<style>
+a:visited {
+	color : grey;
+}
+a {
+	text-decoration: none;
+	color : black;
+		}
+a:hover {
+	text-decoration: underline;
+}
+
+.tg  {
+	border-collapse:collapse;
+	border-spacing:0;
+	margin-left : 40px;
+}
+.tg td{
+	border-color:black;
+	border-style:solid;
+	border-width:1px;
+	font-family:Arial,sans-serif;
+	font-size:14px;
+ 	overflow:hidden;
+ 	padding:10px 5px;
+ 	word-break:normal;
+ 	}
+.tg th{
+	border-color:black;
+	border-style:solid;
+	border-width:1px;
+	font-family:Arial, sans-serif;
+	font-size:14px;
+  	font-weight:normal;
+  	overflow:hidden;
+  	padding:10px 5px;
+  	word-break:normal;
+  	}
+.tg .tg-tpry{
+ 	text-align:left;
+ 	vertical-align:top
+  }
+  
+  ul{
+  	text-align:center;
+   list-style:none;
+   }
+   li{
+   float : left;
+   padding : 0px 5px 0px 5px;
+   }
+   .paginationdiv{
+   width : 300px;
+   height : 20px;
+   text-align : center;
+   }
+   .notewholediv{
+   width : 550px;
+   height : 500px;
+   text-align : center;
+   }
+</style>
+</head>
+<body>
+<div class = "notewholediv">
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-tpry">보낸 사람</th>
+    <th class="tg-tpry">제목</th>
+    <th class="tg-tpry">전송일</th>
+  </tr>
+</thead>
+{% for note in note_page_obj %}
+{% if receivenote%}
+<tbody>
+<tr>
+    <td class="tg-tpry"><a href="notedetail?num={{note.id}}">{{note.send_user}}</a></td>
+    
+    <td class="tg-tpry">
+    	<div class="notetitlediv" style="overflow:hidden; width:200px; height:18px;">
+    	<a href="notedetail?num={{note.id}}">{{note.note_title}}</a>
+    	</div>
+    	</td>
+    
+    <td class="tg-tpry"><a href="notedetail?num={{note.id}}">{{note.send_date | date:'Y-m-d'}}</a></td>
+  </tr>
+</tbody>
+{% else %}
+받은 쪽지가 없습니다
+{% endif %}
+{% endfor %}
+</table>
+
+<div>
+	<ul style="margin-left:100px" class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if note_page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ note_page_obj.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in note_page_obj.paginator.page_range %}
+        {% if page_number == .number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <!-- 다음페이지 -->
+        {% if note_page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ note_page_obj.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+<div style="float:left">
+	<button type="button" onclick="window.close()" style="margin-bottom:10px">닫기</button>
+</div>
+</div>
+
+</body>
+</html>

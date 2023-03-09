@@ -1,0 +1,359 @@
+/*전체 html grid */
+div{
+	color : gray;
+}
+.grid-container {
+	display: grid;
+	grid-template-columns: 13% 70% 17%;
+	grid-template-rows: 120px 70px 200px max-content 200px;
+}
+
+.grid-corecontainer {
+	display: grid;
+	grid-template-columns: 13% 70% 17%;
+	grid-template-rows: 120px 70px 200px max-content 200px;
+}
+
+/*grid 요소*/
+.grid-item {
+	float: left;
+	content: center;
+	/* border : 1px solid black; */
+}
+
+.grid-maincontainer {
+	display: grid;
+	/* padding : auto 40px auto 30px; */
+	/* margin-left : 50px; */
+	grid-template-columns: 1200px;
+	content : center;
+}
+
+
+
+.grid-mainitem {
+	/* border: 1px solid rgba(0, 0, 0, 0.8); */
+	margin: auto 0px;
+	grid-template-rows : max-content;
+}
+#mainwrap{
+	margin-left : 60px;
+}
+.grid-tables {
+	display: grid;
+	grid-template-columns: 600px 600px;
+	grid-template-rows: 600px 600px;
+	padding : 10px;
+	margin : auto;
+}
+.grid-table{
+	margin : 10px;
+	content : center;
+}
+
+
+/*================== 상단 네비바 ======================*/
+#prenav, #postnav{
+	background: #2d2d94;
+}
+.grid-nav {
+	display: grid;
+	grid-template-columns: 264px 264px 264px 264px 264px;
+	grid-template-rows: 70px;
+	background-color : #2d2d94;
+	/* background-color : #FFF8E1; */
+}
+.nav_a{
+	color:white;
+}
+.grid-navitem {
+/* 	border-right: 1px solid darkgray; */
+	border-left : 1px solid white;
+	border-right : 1px solid white;
+	text-align: center;
+	margin: auto 0px;
+}
+/* hr */
+
+/*================광고 사이즈 =================*/
+.top_ad{
+	width : 850px;
+    height : 150px;
+    border : 1px solid lightgray;
+}
+.left_ad{
+	width : 160px;
+	height : 600px;
+	margin : 100px;
+}
+.aside_ad{
+    width : 250px;
+    height : 1130px;
+    margin:50px auto auto 0px;
+}
+/*======================상단 광고 css ===================*/
+
+
+.grid-centerad{
+	display : block;
+	margin : 20px auto 20px auto;
+}
+
+/* footer */
+#prefooter, #footer, #postfooter{
+	background-color : #060645;
+}
+
+
+/*boardcontainer*/
+.grid-boardcontainer {
+	display: grid;
+	background-color: white;
+	grid-template-columns: 50px auto 90px 70px;
+	grid-template-rows : 50px;
+	text-align : center;
+	align-items:center;
+	background-color: #f0f8ff;
+	/* background-color: #84D2C5; */
+	padding : 3px;
+}
+/*main table들*/
+.grid-board {
+	text-align: center;
+	overflow: hidden;
+	padding : auto;
+}
+.grid-board > *{
+	vertical-align : middle;
+	margin:auto;
+}
+.board-content {
+	display: grid;
+	grid-template-columns: 45px auto 90px 70px;
+	grid-template-rows : 50px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid sliver;
+	border-collapse: collapse;
+	text-align: center;
+	align-items:center;
+	color:lightgreen;
+/* 	background:#FAF8F1; */
+	padding : 3px;
+}
+/*header*/
+
+#header{
+	float:left;
+	
+	/* background: linear-gradient(to right,#59a1f2 0%, #b1aaf1 100%); */
+	
+	/* grid-template-columns: 150px 800px 100px 100px 100px 110px; */
+}
+
+
+/*header 좌측 상단 로고들*/
+#main{
+    float:left;
+}
+#imageLogo{
+    width : 60px;
+    height : 60px;
+    margin : 30px 0px auto 90px;
+}
+#textLogo{
+    width : 170px;
+    height : 60px;
+    margin : 30px 0px auto 0px;
+}
+/*검색창*/
+#searchingBox{
+    display:inline-flex;
+    position : relative;
+    padding : 11px;
+    text-align: center;
+    width : 500px;
+    height : 50px;
+    border-radius: 60px;
+    margin : 25px 30px auto 30px;
+}
+#searchingBar {
+    width : 500px;
+    height : 50px;
+    border-radius: 50px;
+    font-size: 17px;
+}
+button{
+    border:0px;
+}
+#searchingIcon{
+    margin:0;
+    width : 25px;
+    background-color: none;
+    position : absolute;
+    margin-top:-55px;
+    margin-left:200px;
+}
+/*로그인여부에 따라 달라지는 부분*/
+/*로그인*/
+.depend_on_user{
+	display:inline-block;
+}
+.dropdown{
+position : relative;
+display : inline-block;
+}
+.dropdown-content {
+display : none;
+position : absolute;
+background-color : #f9f9f9;
+min-width : 130px;
+box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+padding : 12px 16px;
+z-index:1;
+}
+.dropdown:hover .dropdown-content{
+display:block;
+}
+/*비로그인*/
+.not_login_user{
+	display:inline-block;
+	margin-left : 30px;
+}
+
+a, span{
+    text-decoration: none;
+    color : black;
+    font-weight: bold;
+}
+
+#login, #newbie{
+	margin : 0px 20px auto 30px;
+} 
+
+#user, #logout, #myportfolio, #message, #polls{
+    margin : 0px 10px auto 0px;
+}
+#message-img{
+	width : 40px;
+	height : 40px;
+}
+
+/* =================== 음악 =================*/
+.grid-musiccontainer {
+	display: grid;
+	margin : auto 40px auto 0px;
+	grid-template-columns: 250px 950px 250px;
+	grid-template-rows: max-content;
+}
+.grid-musicboardhead{
+	display : grid;
+	grid-template-columns:70px 185px 105px 330px 80px 60px 60px;
+	padding : 4px;
+	margin : 5px;
+	background : #f5f5f5;
+	text-align : center;
+}
+.grid-musicboardcontent{
+	display : grid;
+	grid-template-columns:70px 185px 105px 330px 80px 60px 60px;
+	grid-auto-rows : minmax(65px,auto);
+	grid-row-gap : 5px;
+	padding : 4px;
+	margin : 5px;
+	border-bottom : 1px solid black;
+ 	text-align : center;
+ 	overflow:hidden;
+}
+.grid-musicitem{
+	overflow:hidden;
+	vertical-align:middle;
+	padding : auto 0px;
+}
+.audioitem{
+	width : 350px;
+	height : 54px;
+	background : #f4f4f4;
+	display : grid;
+	grid-template-columns:auto auto;
+	border-radius : 50px;
+}
+
+.audioitem > img{
+	margin-top : 12px;
+	margin-right : 10px;
+}
+/*=================== 그림 ========================*/
+.grid-paintboardcontent{
+	display : grid;
+	grid-template-columns: 210px 210px 210px 210px;
+	grid-row-gap:5px;
+}
+.paint_item{
+/* 	border : 1px solid black; */
+	margin:0px 10px 10px 5px;
+	padding:0px 10px 10px 5px;
+}
+.paint_thumbnail{
+	margin:auto;
+	padding:auto;
+}
+#paintwrap{
+	margin-left : 20px;
+}
+/*자유게시판 내용 부분*/
+.grid-freeboardhead{
+	display : grid;
+	grid-template-columns:90px 530px 90px 110px auto auto;
+	padding : 4px;
+	margin : 5px;
+	background : #f0f8ff;
+	text-align : center;
+}
+.grid-freeboardcontent{
+	display : grid;
+	grid-template-columns:90px 530px 90px 110px auto auto;
+	grid-auto-rows : minmax(35px,auto);
+	grid-row-gap : 5px;
+	padding : 4px;
+	margin : 5px 5px 5px 5px;
+	border-bottom : 1px solid black;
+ 	text-align : center;
+ 	overflow:hidden;
+ 	
+}
+.grid-freeitem{
+	overflow:hidden;
+	vertical-align:middle;
+	padding : auto 0px;
+}
+/*광고게시판 내용부분*/
+.grid-advertiseboardhead {
+	display : grid;
+	grid-template-columns:70px 500px 130px 100px;
+	padding : 4px;
+	margin : 5px;
+	color:black;
+	background : #f0f8ff;
+	text-align : center;
+}
+.grid-advertiseboardcontent{
+	display : grid;
+	grid-template-columns:70px 500px 130px 100px;
+	grid-auto-rows: minmax(35px,auto);
+	grid-row-gap : 5px;
+	padding : 4px;
+	margin : 5px;
+	color:black;
+	border-bottom : 1px solid black;
+	text-align : center;
+}
+.grid-aditem {
+	overflow:hidden;
+}
+/*==================== 좋아요 ===========================*/
+.positive{
+	color : green;
+}
+.negative{
+	color : red;
+}

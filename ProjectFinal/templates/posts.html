@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link type="text/css" rel="stylesheet"
+	href="{% static 'css/MLProject.css'%}">
+<title>Insert title here</title>
+</head>
+<body>
+	{% for obj in qs %}
+		<h1>{{obj.title}}</h1>
+		<p>{{obj.body}}</p>
+		<form action = "{% url 'posts:likepost'%}" method="POST" class="ui form">
+		{% csrf_token %}
+			<input type="hidden" name="post_id" value="{{obj.id}}">
+			{% if user not in obj.liked.all%}
+				<button class="ui button positive" type="submit">Like</button>
+			{% else %}
+				<button class="ui button negative" type="submit">UnLike</button>
+			{% endif %}
+		</form>
+		<strong>{{obj.liked.all.count}} likes</strong>
+	{% endfor %} 
+</body>
+</html>
